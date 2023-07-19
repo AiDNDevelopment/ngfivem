@@ -14,14 +14,13 @@ CreateThread(function()
     })
 
     Zone:onPlayerInOut(function(isPointInside)
-        local Player = PlayerPedId()
-        if isPointInside and Player and PackageCount <= 0 then
+        --local Player = PlayerPedId()
+        if isPointInside and PackageCount == 0 then
             Wait(1000)
-            QBCore.Functions.Notify('Client Ping')
             TriggerServerEvent('addMatPackage')
-            PackageCount = PackageCount + 1
+            PackageCount = 1
             DeliverPackages()
-        else if PackageCount >= 1 then
+        else if PackageCount == 1 then
             Wait(1000)
             QBCore.Functions.Notify('Deliver the packages you have first')
         end
@@ -40,12 +39,14 @@ CreateThread(function()
     })
 
     Zone:onPlayerInOut(function(isPointInside)
-        local Player = PlayerPedId()
-        if isPointInside and Player then
-            QBCore.Functions.Notify('Inside Dropoff')
+        --local Player = PlayerPedId()
+        if isPointInside and PackageCount == 1 then
             TriggerServerEvent('removeMatPackages')
             Wait(1000)
             playerMatReward()
+            PackageCount = 0
+        else 
+            QBCore.Functions.Notify('Go get a package')
         end
     end)
 end)
@@ -66,5 +67,6 @@ end
 function playerMatReward()
     Wait(1000)
     QBCore.Functions.Notify('You have been rewarded with Gun Parts')
+    TriggerServerEvent('playerMatReward')
     RemoveBlip(blip)
 end

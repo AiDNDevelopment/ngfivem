@@ -7,7 +7,7 @@ RegisterNetEvent('addMatPackage', function()
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
 
-    Player.Functions.AddItem('gunparts', 1)
+    Player.Functions.AddItem('matpackage', 1)
     
 end)
 
@@ -16,7 +16,7 @@ RegisterNetEvent('removeMatPackages', function()
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
 
-    Player.Functions.RemoveItem('gunparts', 1)
+    Player.Functions.RemoveItem('matpackage', 1)
 end)
 
 --Reward the player with gunparts
