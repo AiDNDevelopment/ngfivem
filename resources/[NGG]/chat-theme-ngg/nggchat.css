@@ -1,0 +1,17 @@
+.chat-window{
+    background-color: transparent !important;
+    
+}
+
+.chat-input > div{
+    /*Possibly rounded corners*/
+    background-color: rgba(0, 0, 0, 0.7) !important;
+    border-radius: 15px;
+    border: 2px solid white;
+}
+
+.msg{
+    color: #fff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: calc(1.3vh);  /*1.8vh is 13px in 720p*/
+}
