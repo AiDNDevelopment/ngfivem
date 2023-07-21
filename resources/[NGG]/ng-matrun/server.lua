@@ -26,3 +26,10 @@ RegisterNetEvent('playerMatReward', function()
 
     Player.Functions.AddItem('gunparts', 1)
 end)
+
+RegisterNetEvent('playerMatRewardHigh', function()
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+
+    Player.Functions.AddItem('gunparts', 1)
+end)
