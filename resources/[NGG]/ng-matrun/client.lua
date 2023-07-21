@@ -1,10 +1,9 @@
 local QBCore = exports['qb-core']:GetCoreObject()
-local blip = AddBlipForCoord(802.93, -2135.77, 29.43) -- this is our mision bli
 local PackageCount = 0
-
---This Sets up the materials pickup 1 and then handles everything to do with pickup
 local Zone = nil
 
+
+--Materials Pickup 1
 CreateThread(function()
     Zone = BoxZone:Create(vector3(704.64, -1142.62, 23.61), 6.4, 7, {
         name="matCollection1",
@@ -14,20 +13,20 @@ CreateThread(function()
         maxZ=27.21
       })
       
-
     Zone:onPlayerInOut(function(isPointInside)
-        --local Player = PlayerPedId()
         if isPointInside and PackageCount == 0 then
             DeliverPackages()
         else if PackageCount == 1 then
-            Wait(1000)
-            QBCore.Functions.Notify('Deliver the packages you have first')
+            Wait(5000)
+            TriggerEvent('qb-core:client:DrawText', 'I can’t hand over more than one package.', 'top')
+            Wait(5000)
+            TriggerEvent('qb-core:client:HideText')
         end
         end
     end)
 end)
 
---This sets up the materials drop off zone and handles everything at the drop off
+--Materials Dropoff 1
 CreateThread(function()
     Zone = BoxZone:Create(vector3(803.01, -2134.89, 29.37), 9.2, 5, {
         name="matDropoff1",
@@ -43,35 +42,41 @@ CreateThread(function()
             TriggerServerEvent('removeMatPackages')
             PackageCount = 0
             playerMatReward()
-        else 
-            QBCore.Functions.Notify('Go get a package')
+        else
+            TriggerEvent('qb-core:client:DrawText', 'You’re empty-handed. Where’s the package?', 'top')
+            Wait(5000)
+            TriggerEvent('qb-core:client:HideText')
         end
     end)
 end)
 
---Player has to deliver materials packages to a dropoff, this generates a blip that the player can target for gps
+
+--This handles giving the player the package for delivery and instructing them on where to go. 
 function DeliverPackages()
-    PackageCount = 1
-
-    Wait(1000)
+    PackageCount = 1 -- Adjust the package count to 1 so that we cant collect another
     TriggerServerEvent('addMatPackage')
+    TriggerEvent('qb-core:client:DrawText', 'Get this package to my guy at Ammu-Nation #11.', 'top') -- Fancy notification at the top of the screen with this text
 
-    SetBlipSprite(blip, 286)
+    blip = AddBlipForCoord(802.93, -2135.77, 29.43) -- This is the marker blip, Having it anywhere else places the marker the entire time until 1 run has been done
+    SetBlipSprite(blip, 286) -- All of this is the styling of the blip
     SetBlipDisplay(blip, 2)
     SetBlipScale(blip, 1.0)
     SetBlipColour(blip, 5)
     SetBlipAsShortRange(blip, false)
     BeginTextCommandSetBlipName("STRING")
     AddTextComponentString("Deliver Packages")
-    EndTextCommandSetBlipName(blip)
+    EndTextCommandSetBlipName(blip) -- This is the end of the blip config
+
+    Wait(5000)
+    TriggerEvent('qb-core:client:HideText') -- Hides the text shown earlier on
 end
 
 --After the player has done the package drop off the player is then rewarded with gun parts which can be crafted into weapons later
 function playerMatReward()
-    Wait(1000)
-
-    QBCore.Functions.Notify('You have been rewarded with Gun Parts')
+    Wait(1500)
+    TriggerEvent('qb-core:client:DrawText', 'You delivered. Here’s a taste of the profits.', 'top')
     TriggerServerEvent('playerMatReward')
-    
     RemoveBlip(blip)
+    Wait(5000)
+    TriggerEvent('qb-core:client:HideText')
 end
