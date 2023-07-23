@@ -680,7 +680,7 @@ local function garage()
         end
     end)
 end
-
+--ng stuff
 if Config.UseTarget then
     CreateThread(function()
         -- Toggle Duty
@@ -798,6 +798,7 @@ if Config.UseTarget then
 else
 
     -- Toggle Duty
+    -- if PlayerJob.name == "police" then
     local dutyZones = {}
     for _, v in pairs(Config.Locations["duty"]) do
         dutyZones[#dutyZones+1] = BoxZone:Create(
@@ -808,6 +809,16 @@ else
             maxZ = v.z + 1,
         })
     end
+    --else 
+    /*for _, v in pairs(Config.Locations["ngduty"]) do
+        dutyZones[#dutyZones+1] = BoxZone:Create(
+            vector3(vector3(v.x, v.y, v.z)), 1.75, 1, {
+            name="box_zone",
+            debugPoly = false,
+            minZ = v.z - 1,
+            maxZ = v.z + 1,
+        })*/
+    --end
 
     local dutyCombo = ComboZone:Create(dutyZones, {name = "dutyCombo", debugPoly = false})
     dutyCombo:onPlayerInOut(function(isPointInside)

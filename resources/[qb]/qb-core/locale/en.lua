@@ -111,6 +111,7 @@ local Translations = {
             },
         },
         ooc = { help = 'OOC Chat Message' },
+        newb = {help = 'Ask a question in newb chat'},
         me = {
             help = 'Show local message',
             params = {
