@@ -40,3 +40,11 @@ luac.out
 *.hex
 
 *.7z
+
+#Stuff Im trying to hide
+cache
+.replxx_history
+myLogo.png
+polyzone_created_zones.txt
+server.cfg
+server.cfg.bkp

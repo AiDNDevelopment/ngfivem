@@ -31,7 +31,7 @@ QBConfig.Server.Permissions = { 'god', 'admin', 'mod' } -- Add as many groups as
 
 QBConfig.Commands = {} -- Command Configuration
 QBConfig.Commands.OOCColor = {255, 151, 133} -- RGB color code for the OOC command
-QBConfig.Commands.NEWBColor = {255, 255, 0}
+
 
 QBConfig.Notify = {}
 

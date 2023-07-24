@@ -16,7 +16,7 @@ function QBCore.Player.Login(source, citizenid, newData)
                 PlayerData.position = json.decode(PlayerData.position)
                 PlayerData.metadata = json.decode(PlayerData.metadata)
                 PlayerData.charinfo = json.decode(PlayerData.charinfo)
-                PlayerData.charinfo = json.decode(PlayerData.newbToggle)
+                
                 if PlayerData.gang then
                     PlayerData.gang = json.decode(PlayerData.gang)
                 else
