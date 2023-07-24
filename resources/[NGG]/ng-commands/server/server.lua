@@ -2,24 +2,18 @@ local QBCore = exports['qb-core']:GetCoreObject()
 NewbColor = {255, 255, 0}
 local hiddenPlayers = {}
 
-
-
-
-
-
-
 -- Newb command
 QBCore.Commands.Add('newb', 'Send a message to the Newb Channel', {}, false, function(source, args)
     if hiddenPlayers[source] then
         TriggerClientEvent('chat:addMessage', source, {
             color = {255, 0, 0},
             multiline = true,
-            args = {'[Newb]', 'You have toggled off newb messages and cannot send messages to this channel.'}
+            args = {'[NEWB]', 'You have toggled off newb messages and cannot send messages to this channel.'}
         })
         return
     end
 
-    local playerName = GetPlayerName(source)
+    --local playerName = GetPlayerName(source)
     local message = table.concat(args, ' ')
     local Players = QBCore.Functions.GetPlayers()
     for _, v in pairs(Players) do
@@ -34,7 +28,7 @@ QBCore.Commands.Add('newb', 'Send a message to the Newb Channel', {}, false, fun
 end, 'user')
 
 -- Toggles newb
-QBCore.Commands.Add('toggleNewb', 'Toggle visibility of newb messages', {}, false, function(source, args)
+QBCore.Commands.Add('tognewb', 'Toggle visibility of newb messages', {}, false, function(source)
     if hiddenPlayers[source] then
         hiddenPlayers[source] = nil
         TriggerClientEvent('chat:addMessage', source, {
