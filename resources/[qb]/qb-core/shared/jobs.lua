@@ -44,6 +44,35 @@ QBShared.Jobs = {
             },
         },
 	},
+    ['nationalguard'] = {
+		label = 'National Guard',
+        type = "leo",
+		defaultDuty = true,
+		offDutyPay = false,
+		grades = {
+            ['0'] = {
+                name = 'National Guard Recruit',
+                payment = 50
+            },
+			['1'] = {
+                name = 'National Guard Officer',
+                payment = 75
+            },
+			['2'] = {
+                name = 'National Guard Sergeant',
+                payment = 100
+            },
+			['3'] = {
+                name = 'National Guard Lieutenant',
+                payment = 125
+            },
+			['4'] = {
+                name = 'National Guard Chief',
+				isboss = true,
+                payment = 150
+            },
+        },
+	},
 	['ambulance'] = {
 		label = 'EMS',
         type = 'ems',
@@ -282,37 +311,6 @@ QBShared.Jobs = {
             ['0'] = {
                 name = 'Sales',
                 payment = 50
-            },
-        },
-	},
-
-    --Attempting to Create National Guard
-    ['nationalguard'] = {
-		label = 'National Guard',
-        type = "leo",
-		defaultDuty = true,
-		offDutyPay = false,
-		grades = {
-            ['0'] = {
-                name = 'National Guard Recruit',
-                payment = 50
-            },
-			['1'] = {
-                name = 'National Guard Officer',
-                payment = 75
-            },
-			['2'] = {
-                name = 'National Guard Sergeant',
-                payment = 100
-            },
-			['3'] = {
-                name = 'National Guard Lieutenant',
-                payment = 125
-            },
-			['4'] = {
-                name = 'National Guard Chief',
-				isboss = true,
-                payment = 150
             },
         },
 	},

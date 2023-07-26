@@ -45,3 +45,5 @@ QBCore.Commands.Add('tognewb', 'Toggle visibility of newb messages', {}, false, 
         })
     end
 end, 'user')
+
+--Initial contract command

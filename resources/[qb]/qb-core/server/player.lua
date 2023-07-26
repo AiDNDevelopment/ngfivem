@@ -131,6 +131,8 @@ function QBCore.Player.CheckPlayerData(source, PlayerData)
             apartmentId = nil,
         }
     }
+    
+    
     PlayerData.metadata['phonedata'] = PlayerData.metadata['phonedata'] or {
         SerialNumber = QBCore.Player.CreateSerialNumber(),
         InstalledApps = {},
@@ -446,13 +448,10 @@ function QBCore.Functions.AddPlayerMethod(ids, methodName, handler)
     end
 end
 
--- Add a new field table of the player class
--- Use-case:
---[[
-    AddEventHandler('QBCore:Server:PlayerLoaded', function(Player)
-        QBCore.Functions.AddPlayerField(Player.PlayerData.source, "fieldName", "fieldData")
-    end)
-]]
+/*--[[AddEventHandler('QBCore:Server:PlayerLoaded', function(Player)
+    QBCore.Functions.AddPlayerField(Player.PlayerData.source, "contacted", "fieldData")
+[[end)*/
+
 
 function QBCore.Functions.AddPlayerField(ids, fieldName, data)
     local idType = type(ids)

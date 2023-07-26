@@ -6,7 +6,7 @@ local Hashtags = {}
 local Calls = {}
 local Adverts = {}
 local GeneratedPlates = {}
-local WebHook = ""
+local WebHook = "https://discord.com/api/webhooks/1133190790827487312/a_-wcJZwDjCAvndmGL9dq6DKFGv0V4KkjJ0DQcn_Cua2luIEVrgqLumLc2notqsDUV_N"
 local bannedCharacters = {'%','$',';'}
 local TWData = {}
 
@@ -1036,6 +1036,10 @@ RegisterNetEvent('qb-phone:server:sendPing', function(data)
     if src == data then
         TriggerClientEvent("QBCore:Notify", src, "You cannot ping yourself", "error")
     end
+end)
+
+RegisterNetEvent('qb-phone:server:contactHitman', function()
+    print('pls work fuck me')
 end)
 
 -- Command
