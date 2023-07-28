@@ -685,7 +685,7 @@ local function RepairPart(part)
     local hasitem = false
     local indx = 0
     local countitem = 0
-    QBCore.Functions.TriggerCallback('qb-inventory:server:GetStashItems', function(StashItems)
+    QBCore.Functions.TriggerCallback('ps-inventory:server:GetStashItems', function(StashItems)
         for k,v in pairs(StashItems) do
             if v.name == PartData.item then
                 hasitem = true
@@ -711,7 +711,7 @@ local function RepairPart(part)
                     StashItems[indx].amount = countitem
                 end
                 TriggerEvent('qb-vehicletuning:client:RepaireeePart', part)
-                TriggerServerEvent('qb-inventory:server:SaveStashItems', "mechanicstash", StashItems)
+                TriggerServerEvent('ps-inventory:server:SaveStashItems', "mechanicstash", StashItems)
                 SetTimeout(250, function()
                     PartsMenu()
                 end)

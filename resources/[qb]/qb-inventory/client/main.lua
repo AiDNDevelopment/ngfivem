@@ -450,7 +450,7 @@ AddEventHandler('onResourceStop', function(name)
     if Config.UseItemDrop then RemoveAllNearbyDrops() end
 end)
 
-RegisterNetEvent("qb-inventory:client:closeinv", function()
+RegisterNetEvent("ps-inventory:client:closeinv", function()
     closeInventory()
 end)
 
@@ -707,7 +707,7 @@ RegisterNetEvent('inventory:client:SetCurrentStash', function(stash)
     CurrentStash = stash
 end)
 
-RegisterNetEvent('qb-inventory:client:giveAnim', function()
+RegisterNetEvent('ps-inventory:client:giveAnim', function()
     if IsPedInAnyVehicle(PlayerPedId(), false) then
 	return
     else

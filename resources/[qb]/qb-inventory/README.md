@@ -1,4 +1,4 @@
-# qb-inventory
+# ps-inventory
 
 # License
 
@@ -47,12 +47,12 @@
 ## Installation
 ### Manual
 - Download the script and put it in the `[qb]` directory.
-- Import `qb-inventory.sql` in your database
+- Import `ps-inventory.sql` in your database
 - Add the following code to your server.cfg/resouces.cfg
 ```
 ensure qb-core
 ensure qb-logs
-ensure qb-inventory
+ensure ps-inventory
 ensure qb-traphouse
 ensure qb-radio
 ensure qb-drugs

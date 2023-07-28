@@ -22,7 +22,7 @@ Mechanic Job for QB-Core Framework :mechanic:
 
 ## Dependencies
 - [qb-core](https://github.com/qbcore-framework/qb-core)
-- [qb-inventory](https://github.com/qbcore-framework/qb-inventory) - 
+- [ps-inventory](https://github.com/qbcore-framework/ps-inventory) - 
 
 ## Screenshots
 ![Platform](https://imgur.com/KzmXIaY.png)
@@ -44,7 +44,7 @@ Mechanic Job for QB-Core Framework :mechanic:
 - Add the following code to your server.cfg/resouces.cfg
 ```
 ensure qb-core
-ensure qb-inventory
+ensure ps-inventory
 ensure qb-mechanicjob
 ```
 

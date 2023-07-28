@@ -1,5 +1,5 @@
 --[[
-German base language translation for qb-inventory
+German base language translation for ps-inventory
 Translation done by Cpt_NoHand (Cpt_NoHand#0345 on Discord)
 ]]--
 local Translations = {

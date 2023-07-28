@@ -1264,7 +1264,7 @@ local function OpenInventory(name, id, other, origin)
 				secondInv.slots = 0
 			end
 		end
-		TriggerClientEvent("qb-inventory:client:closeinv", id)
+		TriggerClientEvent("ps-inventory:client:closeinv", id)
 		TriggerClientEvent("inventory:client:OpenInventory", src, {}, Player.PlayerData.items, secondInv)
 	else
 		TriggerClientEvent("inventory:client:OpenInventory", src, {}, Player.PlayerData.items)
@@ -1432,7 +1432,7 @@ RegisterNetEvent('inventory:server:SetIsOpenState', function(IsOpen, type, id)
 end)
 
 RegisterNetEvent('inventory:server:OpenInventory', function(name, id, other)
---	print('inventory:server:OpenInventory is deprecated use exports[\'qb-inventory\']:OpenInventory() instead.')
+--	print('inventory:server:OpenInventory is deprecated use exports[\'ps-inventory\']:OpenInventory() instead.')
 	local src = source
 	local ply = Player(src)
 	local Player = QBCore.Functions.GetPlayer(src)
@@ -1637,7 +1637,7 @@ RegisterNetEvent('inventory:server:OpenInventory', function(name, id, other)
 				secondInv.slots = 0
 			end
 		end
-		TriggerClientEvent("qb-inventory:client:closeinv", id)
+		TriggerClientEvent("ps-inventory:client:closeinv", id)
 		Wait(0)
 		TriggerClientEvent("inventory:client:OpenInventory", src, {}, Player.PlayerData.items, secondInv)
 	else
@@ -2242,8 +2242,8 @@ RegisterServerEvent("inventory:server:GiveItem", function(target, name, amount, 
 				TriggerClientEvent('inventory:client:ItemBox',src, QBCore.Shared.Items[item.name], "remove")
 				QBCore.Functions.Notify(src, Lang:t("notify.gitemyg") .. OtherPlayer.PlayerData.charinfo.firstname.." "..OtherPlayer.PlayerData.charinfo.lastname.. " " .. amount .. " " .. item.label .."!")
 				TriggerClientEvent("inventory:client:UpdatePlayerInventory", src, true)
-				TriggerClientEvent('qb-inventory:client:giveAnim', src)
-				TriggerClientEvent('qb-inventory:client:giveAnim', target)
+				TriggerClientEvent('ps-inventory:client:giveAnim', src)
+				TriggerClientEvent('ps-inventory:client:giveAnim', target)
 			else
 				AddItem(src, item.name, amount, item.slot, item.info)
 				QBCore.Functions.Notify(src, Lang:t("notify.gitinvfull"), "error")
@@ -2278,7 +2278,7 @@ end)
 
 --#region Callbacks
 
-QBCore.Functions.CreateCallback('qb-inventory:server:GetStashItems', function(_, cb, stashId)
+QBCore.Functions.CreateCallback('ps-inventory:server:GetStashItems', function(_, cb, stashId)
 	cb(GetStashItems(stashId))
 end)
 

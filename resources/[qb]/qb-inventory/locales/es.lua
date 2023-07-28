@@ -1,5 +1,5 @@
 --[[
-Spanish base language translation for qb-inventory
+Spanish base language translation for ps-inventory
 Translation done by buddizer (mockdot#5387 on Discord)
 ]]--
 local Translations = {
