@@ -48,3 +48,5 @@ myLogo.png
 polyzone_created_zones.txt
 server.cfg
 server.cfg.bkp
+resources/npwd/sv_npwd.log
+resources/pefcl/sv_pefcl.log
