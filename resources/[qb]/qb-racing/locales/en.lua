@@ -1,13 +1,13 @@
 local Translations = {
     error = {
-        name_too_short = 'The name is too short.',
-        name_too_long = 'The name is too long.',
+        name_too_short = 'Name is too short.',
+        name_too_long = 'Name is too long.',
         unowned_dongle = "It doesn't seem to respond do you.",
         id_not_found = "Citizen by that ID was not found.",
         invalid_fob_type = "Invalid fob type.",
         not_in_race = "You are not in a race.",
         race_already_started = "The race has already started!",
-        race_doesnt_exist = "This race does not exist :(",
+        race_doesnt_exist = "This race does not exist.",
         race_timed_out = "The race timed out and was canceled.",
         race_name_exists = "There is already a race with that name.",
         no_permission = "You do not have permission to do that.",
@@ -43,7 +43,7 @@ local Translations = {
     },
     commands = {
         create_racing_fob_command = 'createracingfob',
-        create_racing_fob_description = 'Create a Racing Fob (Admin)',
+        create_racing_fob_description = 'Create a Racing Fob',
     },
     text = {
         checkpoint_left = "Left Checkpoint",
@@ -59,7 +59,7 @@ local Translations = {
         race_records = "Race Records",
         race_records_txt = "See all records for races.",
         setup_race = "Setup a Race",
-        create_race = "Create a Race",
+        create_race = "Create a track",
         close = "✗ Close Menu",
         racers = " racer(s)",
         start_race = "Start Race",

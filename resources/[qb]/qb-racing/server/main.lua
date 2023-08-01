@@ -532,50 +532,56 @@ QBCore.Functions.CreateCallback('qb-racing:server:GetTrackData', function(source
 end)
 
 QBCore.Commands.Add(Lang:t("commands.create_racing_fob_command"), Lang:t("commands.create_racing_fob_description"), { {name='type', help='Basic/Master'}, {name='identifier', help='CitizenID or ID'}, {name='Racer Name', help='Racer Name to associate with Fob'} }, true, function(source, args)
-    local type = args[1]
-    local citizenid = args[2]
+    local Player = QBCore.Functions.GetPlayer(source)
 
-    local name = {}
-    for i = 3, #args do
-        name[#name+1] = args[i]
-    end
-    name = table.concat(name, ' ')
+    if Player.PlayerData.gang.name == "url" and Player.PlayerData.gang.grade.level == 3 then -- change gang grade to whatever the mangement rank of URL is, we can add as many slots as we want really so its set to 3 at the minute because ive only got 2 groups :/ 
+        local type = args[1]
+        local citizenid = args[2]
 
-    local fobTypes = {
-        ['basic'] = "fob_racing_basic",
-        ['master'] = "fob_racing_master"
-    }
+        local name = {}
+        for i = 3, #args do
+            name[#name+1] = args[i]
+        end
+        name = table.concat(name, ' ')
 
-    if fobTypes[type:lower()] then
-        type = fobTypes[type:lower()]
-    else
-        TriggerClientEvent('QBCore:Notify', source, Lang:t("error.invalid_fob_type"), "error")
-        return
-    end
+        local fobTypes = {
+            ['basic'] = "fob_racing_basic",
+            ['master'] = "fob_racing_master"
+        }
 
-    if tonumber(citizenid) then
-        local Player = QBCore.Functions.GetPlayer(tonumber(citizenid))
-        if Player then
-            citizenid = Player.PlayerData.citizenid
+        if fobTypes[type:lower()] then
+            type = fobTypes[type:lower()]
         else
-            TriggerClientEvent('QBCore:Notify', source, Lang:t("error.id_not_found"), "error")
+            TriggerClientEvent('QBCore:Notify', source, Lang:t("error.invalid_fob_type"), "error")
             return
         end
-    end
 
-    if #name >= Config.MaxRacerNameLength then
-        TriggerClientEvent('QBCore:Notify', source, Lang:t("error.name_too_short"), "error")
-        return
-    end
+        if tonumber(citizenid) then
+            local Player = QBCore.Functions.GetPlayer(tonumber(citizenid))
+            if Player then
+                citizenid = Player.PlayerData.citizenid
+            else
+                TriggerClientEvent('QBCore:Notify', source, Lang:t("error.id_not_found"), "error")
+                return
+            end
+        end
 
-    if #name <= Config.MinRacerNameLength then
-        TriggerClientEvent('QBCore:Notify', source, Lang:t("error.name_too_long"), "error")
-        return
-    end
+        if #name >= Config.MaxRacerNameLength then
+            TriggerClientEvent('QBCore:Notify', source, Lang:t("error.name_too_short"), "error")
+            return
+        end
 
-    QBCore.Functions.GetPlayer(source).Functions.AddItem(type, 1, nil, { owner = citizenid, name = name })
-    TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items[type], 'add', 1)
-end, 'admin')
+        if #name <= Config.MinRacerNameLength then
+            TriggerClientEvent('QBCore:Notify', source, Lang:t("error.name_too_long"), "error")
+            return
+        end
+
+        QBCore.Functions.GetPlayer(source).Functions.AddItem(type, 1, nil, { owner = citizenid, name = name })
+        TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items[type], 'add', 1)
+    else 
+        TriggerClientEvent('QBCore:Notify', source, "You do not have permission to use this command", "error")
+    end
+end)
 
 QBCore.Functions.CreateUseableItem("fob_racing_basic", function(source, item)
     UseRacingFob(source, item)
@@ -584,3 +590,5 @@ end)
 QBCore.Functions.CreateUseableItem("fob_racing_master", function(source, item)
     UseRacingFob(source, item)
 end)
+
+
