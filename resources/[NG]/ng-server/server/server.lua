@@ -1,6 +1,46 @@
+--This is really just a bunch of net events that all do roughly the same thing but with differnet names, they should be easy enough to understand
+-- 
 local QBCore = exports['qb-core']:GetCoreObject()
-NewbColor = {255, 255, 0}
+local NewbColor = {255, 255, 0}
 local hiddenPlayers = {}
+
+--Materials Functions
+--add Materials packages
+RegisterNetEvent('addMatPackage', function()
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+
+    Player.Functions.AddItem('matpackage', 1)
+    
+end)
+
+-- Remove Materials Packages
+RegisterNetEvent('removeMatPackages', function()
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+
+    Player.Functions.RemoveItem('matpackage', 1)
+end)
+
+--Reward the player with gunparts
+RegisterNetEvent('playerMatReward', function()
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+
+    Player.Functions.AddItem('gunparts', 1)
+end)
+
+RegisterNetEvent('playerMatRewardHigh', function()
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+
+    Player.Functions.AddItem('gunparts', 1)
+end)
+---End Materials Functions
+
+
+
+---Commands
 
 -- Newb command
 QBCore.Commands.Add('newb', 'Send a message to the Newb Channel', {}, false, function(source, args)
@@ -45,5 +85,3 @@ QBCore.Commands.Add('tognewb', 'Toggle visibility of newb messages', {}, false, 
         })
     end
 end, 'user')
-
---Initial contract command
