@@ -66,12 +66,6 @@ Config.MenuControlKey = 238
 -- These are all empty for you to fill in, refer to the .md files for help in filling these in
 
 Config.CircleZones = {
-	["testing"] = {
-		name = "testing",
-		coords = vector3(159.6, -999.4, 29.35),
-		radius = 3,
-		debugPoly = true
-	}
 }
 
 Config.BoxZones = {
