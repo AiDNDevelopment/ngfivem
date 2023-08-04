@@ -1,7 +1,7 @@
 /* Customize style for dialog menus and carousels here */
 
 .brand-logo { width: 14%!important; }
-.text-detailbutton { color:white;)!important; }
+.text-detailbutton { color: white !important;}
 .bg-bgbutton { background: rgb(103, 108, 111)!important; }
 .text-togglecolor { color: rgb(68 117 182)!important; }
 .loadingbar { width: 27%!important; height: auto!important; padding: 20px!important; padding-left: 0px!important; padding-right: 25px!important;border-radius: 10px; position: relative;}
@@ -33,6 +33,7 @@ span.q-btn__content.text-center.col.items-center.q-anchor--skip.justify-center.c
     transform: translateY(-50%);
     padding: 20px;
     border-radius: 10px;
+    /*box-shadow: 0px 0px 50px rgba(33,33,33,.2) !important; */
   }
   
   #patch-notes h2 {

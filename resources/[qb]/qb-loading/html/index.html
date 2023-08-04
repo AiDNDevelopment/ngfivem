@@ -178,15 +178,37 @@
                 </q-card>
             </div>
 
-                <q-card id="patch-notes" class="bg-transparent text-white">
+                <q-card flat id="patch-notes" class="bg-transparent text-white">
                     <q-card-section>
                       <div class="text-h6">Patch Notes</div>
-                      <div class="text-h7">V1.0.0</div>
+                      <div class="text-subtitle2">Version: {{version}} | Date: {{updatedate}}</div>
                     </q-card-section>
-                    <q-seperator></q-seperator>
-                    <q-list>
+                    <q-separator dark></q-separator>
+                    <q-list dense bordered padding class="rounded-borders">
                         <q-item>
-                            <q-item-section>How long can we go and does this also have word wrap and can i just spam a decent length paragraph into this bitch without it causing any issues in the log run... i dno i wonder if i can do a nested list just to really fuck with people or if i can make this a paragraph down here rather than a list.<br></br>this is a test bigtime</q-item-section>
+                            <q-item-section>
+                                Patch notes 1, this is nice and easy now super simple bullet points
+                            </q-item-section>
+                        </q-item>
+                        <q-item>
+                            <q-item-section>
+                                Patch notes 2, this is slightly longer and im sure i can work out the formatting in the future, these patch notes are probably meant to be more condensed than this because were going to have a discord and some forums ig
+                            </q-item-section>
+                        </q-item>
+                        <q-item>
+                            <q-item-section>
+                                Patch notes 3, this is slightly longer and im sure i can work out the formatting in the future, these patch notes are probably meant to be more condensed than this because were going to have a discord and some forums ig
+                            </q-item-section>
+                        </q-item>
+                        <q-item>
+                            <q-item-section>
+                                Patch notes 4, this is slightly longer and im sure i can work out the formatting in the future, these patch notes are probably meant to be more condensed than this because were going to have a discord and some forums ig
+                            </q-item-section>
+                        </q-item>
+                        <q-item>
+                            <q-item-section>
+                                Patch notes 5, this is slightly longer and im sure i can work out the formatting in the future, these patch notes are probably meant to be more condensed than this because were going to have a discord and some forums ig
+                            </q-item-section>
                         </q-item>
                     </q-list>
                   </q-card>
@@ -202,8 +224,9 @@
                         
                         <div class="loadingbar">
                             <div class="loadbar"><div class="thingy"></div></div>
-                            <div class="progress-text">We are loading our city for you...</div>
+                            <div class="progress-text"id="typing-text"></div>
                         </div>
+                        
                         <q-btn icon="settings_suggest" color="bgbutton" @click="settings = true"></q-btn>
                     </q-card-section>
                 </q-card>

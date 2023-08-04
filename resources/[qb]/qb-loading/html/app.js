@@ -40,6 +40,10 @@ const load = Vue.createApp({
       Keybind15: 'Use Item Slots',
       Keybind16: 'Cruise Control',
 
+      version:'1.0.0',
+      updatedate: '04/08/2023', /*UK time ofc*/
+      
+
       firstap: ref(true),
       secondap: ref(true),
       thirdap: ref(true),
@@ -119,4 +123,24 @@ function progressBar() {
         }
     }, 500);
 }
+
+let text = 'We are loading our city for you...';
+let index = 0;
+let typingText = document.getElementById('typing-text');
+
+function typeText() {
+    let typingInterval = setInterval(() => {
+      typingText.textContent += text.charAt(index);
+      index++;
+      if (index === text.length) {
+        clearInterval(typingInterval);
+        setTimeout(() => {
+          index = 0;
+          typingText.textContent = '';
+        }, 3000);
+      }
+    }, 100);
+  }
+  
+  setInterval(typeText, 3000);
 
