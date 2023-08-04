@@ -178,17 +178,31 @@
                 </q-card>
             </div>
 
+                <q-card id="patch-notes" class="bg-transparent text-white">
+                    <q-card-section>
+                      <div class="text-h6">Patch Notes</div>
+                      <div class="text-h7">V1.0.0</div>
+                    </q-card-section>
+                    <q-seperator></q-seperator>
+                    <q-list>
+                        <q-item>
+                            <q-item-section>How long can we go and does this also have word wrap and can i just spam a decent length paragraph into this bitch without it causing any issues in the log run... i dno i wonder if i can do a nested list just to really fuck with people or if i can make this a paragraph down here rather than a list.<br></br>this is a test bigtime</q-item-section>
+                        </q-item>
+                    </q-list>
+                  </q-card>
+
             <div class="absolute-bottom q-pa-xl">
                 <q-card flat style="width: auto; background: transparent;">
                     <q-card-section class="row items-center no-wrap">
 
                         <!-- This is where you want to replace with your logo -->
-
                         <img class="cursor-none brand-logo" src="/assets/branding/qbcore.svg"></img>
                         <q-space></q-space>
                         <q-btn :ripple="false" flat size="xl" icon="downloading" color="white" @click="download = true"></q-btn>
+                        
                         <div class="loadingbar">
                             <div class="loadbar"><div class="thingy"></div></div>
+                            <div class="progress-text">We are loading our city for you...</div>
                         </div>
                         <q-btn icon="settings_suggest" color="bgbutton" @click="settings = true"></q-btn>
                     </q-card-section>
@@ -196,7 +210,7 @@
             </div>
 
             <q-dialog no-shake v-model="download" position="bottom">
-                <q-card style="max-width: 400px; margin-left: 50vw; margin-bottom: 13vh;">
+                <q-card style="max-width: 400px; margin-left: 50vw; margin-bottom: 13vh; background-color: rgba(69, 68, 68, 1); color: white">
                     <q-card-section>
                         <div style="white-space: pre-wrap;" class="text-h6">
                             {{ DownloadTitle }}
@@ -214,7 +228,7 @@
             </q-dialog>
 
             <q-dialog no-shake v-model="settings" position="right">
-                <q-card style="max-width: 300px; margin-right: 3.4vw; top: 20vh!important;">
+                <q-card style="max-width: 300px; margin-right: 3.4vw; top: 20vh!important; background-color: rgba(69, 68, 68, 1); color: white">
                     <q-card-section class="row items-center q-pb-none">
                         <div style="white-space: pre-wrap;" class="text-h6">
                             {{ SettingsTitle }}

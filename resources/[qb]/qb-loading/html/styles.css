@@ -1,12 +1,12 @@
 /* Customize style for dialog menus and carousels here */
 
 .brand-logo { width: 14%!important; }
-.text-detailbutton { color: rgb(103, 108, 111)!important; }
+.text-detailbutton { color:white;)!important; }
 .bg-bgbutton { background: rgb(103, 108, 111)!important; }
-.text-togglecolor { color: rgb(220 20 60)!important; }
-.loadingbar { width: 27%!important; height: auto!important; padding: 20px!important; padding-left: 0px!important; padding-right: 25px!important}
-.loadbar { width: auto; height: 1.5vh; background: rgb(103, 108, 111); box-shadow: 0 1px 5px #0003, 0 2px 2px #00000024, 0 3px 1px -2px #0000001f; z-index: 9999; }
-.thingy { width: auto; height: 1.5vh; background: rgb(220 20 60); z-index: 9999; }
+.text-togglecolor { color: rgb(68 117 182)!important; }
+.loadingbar { width: 27%!important; height: auto!important; padding: 20px!important; padding-left: 0px!important; padding-right: 25px!important;border-radius: 10px; position: relative;}
+.loadbar { width: auto; height: 1.5vh; background: rgb(103, 108, 111); box-shadow: 0 1px 5px #0003, 0 2px 2px #00000024, 0 3px 1px -2px #0000001f; z-index: 9999;border-radius: 10px;}
+.thingy { width: auto; height: 1.5vh; background: rgb(68 117 182); z-index: 9999; border-radius: 10px;}
 .q-carousel { background: rgb(0, 0, 0)!important; height: auto!important; } 
 .q-mb-md-d { padding-top: 0px!important; padding-left: 0.3vw!important; }
 .q-toggle { margin-left: -0.5vw!important; }
@@ -24,3 +24,33 @@ span.q-btn__content.text-center.col.items-center.q-anchor--skip.justify-center.c
 .q-carousel .q-carousel--padding, .q-carousel__slide { padding-top: 0px!important; }
 .scroll { overflow: hidden!important; }
 .q-focus-helper { opacity: 0!important; }
+
+#patch-notes {
+    position: absolute;
+    top: 50%;
+    left: 60px;
+    width: 500px;
+    transform: translateY(-50%);
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  #patch-notes h2 {
+    margin-top: 0;
+  }
+  
+  .settings {
+    background-color: gray;
+  }
+
+  .progress-text{
+    color: white;
+    position: absolute;
+    top: -10px;
+    left: 0px;
+    right: 0;
+    font-weight: bold;
+  }
+
+  /* - nice blue i found rgba(68,117,182,255) */
+  /* - nice gray i found rgba(69, 68, 68, 1) / #454444*/

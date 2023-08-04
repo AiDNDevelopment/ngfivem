@@ -642,3 +642,102 @@
 {"level":"silly","message":{"data":[{"identifier":"WMS95917","name":"Aidan Test","source":1}],"status":"ok"},"module":"events","timestamp":"2023-08-03T12:23:09.113Z"}
 {"level":"silly","message":"Response Promise Event pefcl:sharedAccountsGetUsers:24931e9f-fcf2-464f-86ac-55c796817fe5 (15.687ms), Data >>","module":"events","timestamp":"2023-08-03T12:23:09.126Z"}
 {"level":"silly","message":{"data":[{"name":"Aidan Test","role":"admin","userIdentifier":"WMS95917"}],"status":"ok"},"module":"events","timestamp":"2023-08-03T12:23:09.126Z"}
+{"level":"debug","message":"Initializing...","module":"base","timestamp":"2023-08-03T13:08:22.528Z"}
+{"level":"debug","message":"Initialized Boot controller","module":"base","timestamp":"2023-08-03T13:08:22.531Z"}
+{"level":"debug","message":"Initialized User controller","module":"base","timestamp":"2023-08-03T13:08:22.532Z"}
+{"level":"debug","message":"Initialized Cash controller","module":"base","timestamp":"2023-08-03T13:08:22.532Z"}
+{"level":"debug","message":"Initialized Invoice controller","module":"base","timestamp":"2023-08-03T13:08:22.532Z"}
+{"level":"debug","message":"Initialized Account controller","module":"base","timestamp":"2023-08-03T13:08:22.532Z"}
+{"level":"debug","message":"Initialized Transaction controller","module":"base","timestamp":"2023-08-03T13:08:22.533Z"}
+{"level":"debug","message":"Initialized Broadcast controller","module":"base","timestamp":"2023-08-03T13:08:22.533Z"}
+{"level":"debug","message":"Loading language from config: en","module":"i18n","timestamp":"2023-08-03T13:08:22.533Z"}
+{"level":"debug","message":"Checking database connection ..","module":"boot","timestamp":"2023-08-03T13:08:24.165Z"}
+{"level":"debug","message":"Connected to database.","module":"boot","timestamp":"2023-08-03T13:08:24.347Z"}
+{"level":"info","message":"Framework integration is enabled.","module":"boot","timestamp":"2023-08-03T13:08:24.348Z"}
+{"level":"debug","message":"Verifying exports ..","module":"boot","timestamp":"2023-08-03T13:08:24.348Z"}
+{"level":"debug","message":"Checking exports from resource: qb-pefcl","module":"frameworkIntegration","timestamp":"2023-08-03T13:08:24.349Z"}
+{"level":"info","message":"Starting pefcl.","module":"boot","timestamp":"2023-08-03T13:08:24.350Z"}
+{"level":"debug","message":"Loading player for pefcl.","module":"user","timestamp":"2023-08-03T13:09:57.499Z"}
+{"level":"debug","message":{"identifier":"WMS95917","name":"Aidan Test","source":1},"module":"user","timestamp":"2023-08-03T13:09:57.499Z"}
+{"level":"debug","message":"Player loaded. Emitting: pefcl:userLoaded","module":"user","timestamp":"2023-08-03T13:09:57.503Z"}
+{"level":"silly","message":"Checking if default account exists for source: 1","module":"accounts","timestamp":"2023-08-03T13:09:57.531Z"}
+{"level":"silly","message":"Identifier: WMS95917","module":"accounts","timestamp":"2023-08-03T13:09:57.532Z"}
+{"level":"silly","message":"Default account exists.","module":"accounts","timestamp":"2023-08-03T13:09:57.649Z"}
+{"level":"silly","message":"netPromise > pefcl:getAccounts > RequestObj","module":"events","timestamp":"2023-08-03T13:09:57.885Z"}
+{"level":"silly","message":{"data":null,"source":1},"module":"events","timestamp":"2023-08-03T13:09:57.886Z"}
+{"level":"debug","message":"Retrieving accounts","module":"accounts","timestamp":"2023-08-03T13:09:57.887Z"}
+{"level":"silly","message":"Response Promise Event pefcl:getAccounts:61a2ba0d-cf69-49c6-9cfb-6081ff210130 (23.2799ms), Data >>","module":"events","timestamp":"2023-08-03T13:09:57.909Z"}
+{"level":"silly","message":{"data":[{"accountName":"Personal account","balance":51,"createdAt":"31/07/2023, 20:47:02","deletedAt":null,"id":1,"isDefault":true,"number":"920,0602-0734-2344","ownerIdentifier":"WMS95917","role":"owner","type":"personal","updatedAt":"2023-07-31T23:13:50.000Z"},{"accountName":"Los Santos Police","balance":500,"createdAt":"31/07/2023, 21:43:00","deletedAt":null,"id":2,"isDefault":true,"number":"920,1824-1453-0667","ownerIdentifier":"police","role":"admin","type":"shared","updatedAt":"2023-07-31T20:43:00.000Z"}],"status":"ok"},"module":"events","timestamp":"2023-08-03T13:09:57.910Z"}
+{"level":"debug","message":"Initializing...","module":"base","timestamp":"2023-08-04T11:49:40.065Z"}
+{"level":"debug","message":"Initialized Boot controller","module":"base","timestamp":"2023-08-04T11:49:40.070Z"}
+{"level":"debug","message":"Initialized User controller","module":"base","timestamp":"2023-08-04T11:49:40.070Z"}
+{"level":"debug","message":"Initialized Cash controller","module":"base","timestamp":"2023-08-04T11:49:40.070Z"}
+{"level":"debug","message":"Initialized Invoice controller","module":"base","timestamp":"2023-08-04T11:49:40.071Z"}
+{"level":"debug","message":"Initialized Account controller","module":"base","timestamp":"2023-08-04T11:49:40.071Z"}
+{"level":"debug","message":"Initialized Transaction controller","module":"base","timestamp":"2023-08-04T11:49:40.071Z"}
+{"level":"debug","message":"Initialized Broadcast controller","module":"base","timestamp":"2023-08-04T11:49:40.071Z"}
+{"level":"debug","message":"Loading language from config: en","module":"i18n","timestamp":"2023-08-04T11:49:40.072Z"}
+{"level":"debug","message":"Checking database connection ..","module":"boot","timestamp":"2023-08-04T11:49:45.695Z"}
+{"level":"debug","message":"Initializing...","module":"base","timestamp":"2023-08-04T11:50:09.447Z"}
+{"level":"debug","message":"Initialized Boot controller","module":"base","timestamp":"2023-08-04T11:50:09.451Z"}
+{"level":"debug","message":"Initialized User controller","module":"base","timestamp":"2023-08-04T11:50:09.451Z"}
+{"level":"debug","message":"Initialized Cash controller","module":"base","timestamp":"2023-08-04T11:50:09.451Z"}
+{"level":"debug","message":"Initialized Invoice controller","module":"base","timestamp":"2023-08-04T11:50:09.452Z"}
+{"level":"debug","message":"Initialized Account controller","module":"base","timestamp":"2023-08-04T11:50:09.452Z"}
+{"level":"debug","message":"Initialized Transaction controller","module":"base","timestamp":"2023-08-04T11:50:09.452Z"}
+{"level":"debug","message":"Initialized Broadcast controller","module":"base","timestamp":"2023-08-04T11:50:09.453Z"}
+{"level":"debug","message":"Loading language from config: en","module":"i18n","timestamp":"2023-08-04T11:50:09.453Z"}
+{"level":"debug","message":"Checking database connection ..","module":"boot","timestamp":"2023-08-04T11:50:10.780Z"}
+{"level":"debug","message":"Connected to database.","module":"boot","timestamp":"2023-08-04T11:50:10.929Z"}
+{"level":"info","message":"Framework integration is enabled.","module":"boot","timestamp":"2023-08-04T11:50:10.929Z"}
+{"level":"debug","message":"Verifying exports ..","module":"boot","timestamp":"2023-08-04T11:50:10.929Z"}
+{"level":"debug","message":"Checking exports from resource: qb-pefcl","module":"frameworkIntegration","timestamp":"2023-08-04T11:50:10.930Z"}
+{"level":"info","message":"Starting pefcl.","module":"boot","timestamp":"2023-08-04T11:50:10.931Z"}
+{"level":"debug","message":"Loading player for pefcl.","module":"user","timestamp":"2023-08-04T11:51:37.969Z"}
+{"level":"debug","message":{"identifier":"WMS95917","name":"Aidan Test","source":1},"module":"user","timestamp":"2023-08-04T11:51:37.970Z"}
+{"level":"debug","message":"Player loaded. Emitting: pefcl:userLoaded","module":"user","timestamp":"2023-08-04T11:51:37.973Z"}
+{"level":"silly","message":"Checking if default account exists for source: 1","module":"accounts","timestamp":"2023-08-04T11:51:37.993Z"}
+{"level":"silly","message":"Identifier: WMS95917","module":"accounts","timestamp":"2023-08-04T11:51:37.993Z"}
+{"level":"silly","message":"Default account exists.","module":"accounts","timestamp":"2023-08-04T11:51:38.107Z"}
+{"level":"silly","message":"netPromise > pefcl:getAccounts > RequestObj","module":"events","timestamp":"2023-08-04T11:51:38.346Z"}
+{"level":"silly","message":{"data":null,"source":1},"module":"events","timestamp":"2023-08-04T11:51:38.346Z"}
+{"level":"debug","message":"Retrieving accounts","module":"accounts","timestamp":"2023-08-04T11:51:38.347Z"}
+{"level":"silly","message":"Response Promise Event pefcl:getAccounts:a138ab8e-2d1e-40e7-beca-59bb16842778 (154.6574ms), Data >>","module":"events","timestamp":"2023-08-04T11:51:38.501Z"}
+{"level":"silly","message":{"data":[{"accountName":"Personal account","balance":51,"createdAt":"31/07/2023, 20:47:02","deletedAt":null,"id":1,"isDefault":true,"number":"920,0602-0734-2344","ownerIdentifier":"WMS95917","role":"owner","type":"personal","updatedAt":"2023-07-31T23:13:50.000Z"},{"accountName":"Los Santos Police","balance":500,"createdAt":"31/07/2023, 21:43:00","deletedAt":null,"id":2,"isDefault":true,"number":"920,1824-1453-0667","ownerIdentifier":"police","role":"admin","type":"shared","updatedAt":"2023-07-31T20:43:00.000Z"}],"status":"ok"},"module":"events","timestamp":"2023-08-04T11:51:38.501Z"}
+{"level":"debug","message":"Initializing...","module":"base","timestamp":"2023-08-04T12:34:46.693Z"}
+{"level":"debug","message":"Initialized Boot controller","module":"base","timestamp":"2023-08-04T12:34:46.697Z"}
+{"level":"debug","message":"Initialized User controller","module":"base","timestamp":"2023-08-04T12:34:46.697Z"}
+{"level":"debug","message":"Initialized Cash controller","module":"base","timestamp":"2023-08-04T12:34:46.698Z"}
+{"level":"debug","message":"Initialized Invoice controller","module":"base","timestamp":"2023-08-04T12:34:46.698Z"}
+{"level":"debug","message":"Initialized Account controller","module":"base","timestamp":"2023-08-04T12:34:46.698Z"}
+{"level":"debug","message":"Initialized Transaction controller","module":"base","timestamp":"2023-08-04T12:34:46.698Z"}
+{"level":"debug","message":"Initialized Broadcast controller","module":"base","timestamp":"2023-08-04T12:34:46.699Z"}
+{"level":"debug","message":"Loading language from config: en","module":"i18n","timestamp":"2023-08-04T12:34:46.699Z"}
+{"level":"debug","message":"Checking database connection ..","module":"boot","timestamp":"2023-08-04T12:34:48.185Z"}
+{"level":"debug","message":"Connected to database.","module":"boot","timestamp":"2023-08-04T12:34:48.309Z"}
+{"level":"info","message":"Framework integration is enabled.","module":"boot","timestamp":"2023-08-04T12:34:48.310Z"}
+{"level":"debug","message":"Verifying exports ..","module":"boot","timestamp":"2023-08-04T12:34:48.310Z"}
+{"level":"debug","message":"Checking exports from resource: qb-pefcl","module":"frameworkIntegration","timestamp":"2023-08-04T12:34:48.310Z"}
+{"level":"info","message":"Starting pefcl.","module":"boot","timestamp":"2023-08-04T12:34:48.312Z"}
+{"level":"debug","message":"Loading player for pefcl.","module":"user","timestamp":"2023-08-04T12:36:40.279Z"}
+{"level":"debug","message":{"identifier":"WMS95917","name":"Aidan Test","source":1},"module":"user","timestamp":"2023-08-04T12:36:40.280Z"}
+{"level":"debug","message":"Player loaded. Emitting: pefcl:userLoaded","module":"user","timestamp":"2023-08-04T12:36:40.283Z"}
+{"level":"silly","message":"Checking if default account exists for source: 1","module":"accounts","timestamp":"2023-08-04T12:36:40.317Z"}
+{"level":"silly","message":"Identifier: WMS95917","module":"accounts","timestamp":"2023-08-04T12:36:40.318Z"}
+{"level":"silly","message":"Default account exists.","module":"accounts","timestamp":"2023-08-04T12:36:40.321Z"}
+{"level":"silly","message":"netPromise > pefcl:getAccounts > RequestObj","module":"events","timestamp":"2023-08-04T12:36:41.067Z"}
+{"level":"silly","message":{"data":null,"source":1},"module":"events","timestamp":"2023-08-04T12:36:41.068Z"}
+{"level":"debug","message":"Retrieving accounts","module":"accounts","timestamp":"2023-08-04T12:36:41.069Z"}
+{"level":"silly","message":"Response Promise Event pefcl:getAccounts:ffe1dbe5-73fc-40fb-96fb-ec86be166067 (42.5118ms), Data >>","module":"events","timestamp":"2023-08-04T12:36:41.110Z"}
+{"level":"silly","message":{"data":[{"accountName":"Personal account","balance":51,"createdAt":"31/07/2023, 20:47:02","deletedAt":null,"id":1,"isDefault":true,"number":"920,0602-0734-2344","ownerIdentifier":"WMS95917","role":"owner","type":"personal","updatedAt":"2023-07-31T23:13:50.000Z"},{"accountName":"Los Santos Police","balance":500,"createdAt":"31/07/2023, 21:43:00","deletedAt":null,"id":2,"isDefault":true,"number":"920,1824-1453-0667","ownerIdentifier":"police","role":"admin","type":"shared","updatedAt":"2023-07-31T20:43:00.000Z"}],"status":"ok"},"module":"events","timestamp":"2023-08-04T12:36:41.111Z"}
+{"level":"debug","message":"Loading player for pefcl.","module":"user","timestamp":"2023-08-04T12:37:52.773Z"}
+{"level":"debug","message":{"identifier":"WMS95917","name":"Aidan Test","source":2},"module":"user","timestamp":"2023-08-04T12:37:52.774Z"}
+{"level":"debug","message":"Player loaded. Emitting: pefcl:userLoaded","module":"user","timestamp":"2023-08-04T12:37:52.774Z"}
+{"level":"silly","message":"Checking if default account exists for source: 2","module":"accounts","timestamp":"2023-08-04T12:37:52.816Z"}
+{"level":"silly","message":"Identifier: WMS95917","module":"accounts","timestamp":"2023-08-04T12:37:52.817Z"}
+{"level":"silly","message":"Default account exists.","module":"accounts","timestamp":"2023-08-04T12:37:52.858Z"}
+{"level":"silly","message":"netPromise > pefcl:getAccounts > RequestObj","module":"events","timestamp":"2023-08-04T12:37:53.573Z"}
+{"level":"silly","message":{"data":null,"source":2},"module":"events","timestamp":"2023-08-04T12:37:53.573Z"}
+{"level":"debug","message":"Retrieving accounts","module":"accounts","timestamp":"2023-08-04T12:37:53.574Z"}
+{"level":"silly","message":"Response Promise Event pefcl:getAccounts:79017739-135f-415f-bc46-f7e35699be5e (9.1545ms), Data >>","module":"events","timestamp":"2023-08-04T12:37:53.582Z"}
+{"level":"silly","message":{"data":[{"accountName":"Personal account","balance":51,"createdAt":"31/07/2023, 20:47:02","deletedAt":null,"id":1,"isDefault":true,"number":"920,0602-0734-2344","ownerIdentifier":"WMS95917","role":"owner","type":"personal","updatedAt":"2023-07-31T23:13:50.000Z"},{"accountName":"Los Santos Police","balance":500,"createdAt":"31/07/2023, 21:43:00","deletedAt":null,"id":2,"isDefault":true,"number":"920,1824-1453-0667","ownerIdentifier":"police","role":"admin","type":"shared","updatedAt":"2023-07-31T20:43:00.000Z"}],"status":"ok"},"module":"events","timestamp":"2023-08-04T12:37:53.583Z"}

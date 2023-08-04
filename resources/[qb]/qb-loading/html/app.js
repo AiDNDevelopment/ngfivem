@@ -5,7 +5,7 @@ const { ref } = Vue
 const load = Vue.createApp({
   setup () {
     return {
-      CarouselText1: 'You can add/remove items, vehicles, jobs & gangs through the shared folder.',
+      CarouselText1: 'Dont die...',
       CarouselSubText1: 'Photo captured by: Markyoo#8068',
       CarouselText2: 'Adding additional player data can be achieved by modifying the qb-core player.lua file.',
       CarouselSubText2: 'Photo captured by: ihyajb#9723',
@@ -14,8 +14,8 @@ const load = Vue.createApp({
       CarouselText4: 'For additional support please join our community at discord.gg/qbcore',
       CarouselSubText4: 'Photo captured by: Robinerino#1312',
 
-      DownloadTitle: 'Downloading NGFiveM Assets',
-      DownloadDesc: "Hold tight while we begin downloading all the resources/assets required to play on our server. \n\nAfter download has been finished successfully, you'll be placed into the server and this screen will disappear. Please don't leave or turn off your PC. ",
+      DownloadTitle: 'Preparing our city for you 👍',
+      DownloadDesc: "Please hold up for a moment whilst we download all of the resources and assets needed to join our city. \n\nOnce the download has been completed successfully, you will be sent into our city and this screen will dissapear. Please don't leave or turn off your PC",
 
       SettingsTitle: 'Settings',
       AudioTrackDesc1: 'When disabled the current audio-track playing will be stopped.',
@@ -106,3 +106,17 @@ const handlers = {
 window.addEventListener("message", function (e) {
     (handlers[e.data.eventName] || function () {})(e.data);
 });
+
+function progressBar() {    
+    let progress = 0;
+    const progressBarInner = document.querySelector('.progress-bar-inner');
+    const interval = setInterval(() => {
+        progress += 10;
+        progressBarInner.style.width = `${progress}%`;
+        if (progress >= 100) {
+            clearInterval(interval);
+            // You can add code here to hide the loading screen and show the game UI
+        }
+    }, 500);
+}
+
