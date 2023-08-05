@@ -5,13 +5,13 @@ const { ref } = Vue
 const load = Vue.createApp({
   setup () {
     return {
-      CarouselText1: 'Dont die...',
+      CarouselText1: 'If you are downed you have 6 minutes before you are automatically admitted to the emergency room.',
       CarouselSubText1: 'Photo captured by: Markyoo#8068',
-      CarouselText2: 'Adding additional player data can be achieved by modifying the qb-core player.lua file.',
+      CarouselText2: `We've got plenty for you to waste your money on!`,
       CarouselSubText2: 'Photo captured by: ihyajb#9723',
-      CarouselText3: 'All server-specific adjustments can be made in the config.lua files throughout the build.',
+      CarouselText3: 'Join our development tests and earn rewards!.',
       CarouselSubText3: 'Photo captured by: FLAPZ[INACTIV]#9925',
-      CarouselText4: 'For additional support please join our community at discord.gg/qbcore',
+      CarouselText4: 'Guess who ran out of things to put as we went on xD',
       CarouselSubText4: 'Photo captured by: Robinerino#1312',
 
       DownloadTitle: 'Preparing our city for you 👍',

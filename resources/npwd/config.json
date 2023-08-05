@@ -33,7 +33,7 @@
   },
   "defaultContacts": [],
   "disabledApps": [],
-  "apps": ["pefcl","npwd_qb_racing"],
+  "apps": ["pefcl"],
   "voiceMessage": {
     "enabled": true,
     "authorizationHeader": "Authorization",
