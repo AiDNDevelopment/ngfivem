@@ -1,10 +1,9 @@
---This is really just a bunch of net events that all do roughly the same thing but with differnet names, they should be easy enough to understand
--- 
 local QBCore = exports['qb-core']:GetCoreObject()
 local NewbColor = {255, 255, 0}
 local hiddenPlayers = {}
 
 --Materials Functions
+
 --add Materials packages
 RegisterNetEvent('addMatPackage', function()
     local src = source
@@ -37,8 +36,6 @@ RegisterNetEvent('playerMatRewardHigh', function()
     Player.Functions.AddItem('gunparts', 1)
 end)
 ---End Materials Functions
-
-
 
 ---Commands
 
@@ -85,3 +82,4 @@ QBCore.Commands.Add('tognewb', 'Toggle visibility of newb messages', {}, false, 
         })
     end
 end, 'user')
+--End commands
