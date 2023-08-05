@@ -54,7 +54,7 @@ span.q-btn__content.text-center.col.items-center.q-anchor--skip.justify-center.c
   }
   
   .settings {
-    background-color: gray;
+    background-color: rgba(69, 68, 68, 1);
   }
 
   .progress-text{
@@ -80,5 +80,5 @@ span.q-btn__content.text-center.col.items-center.q-anchor--skip.justify-center.c
   }
   .fab.fa-discord {
     font-size: 48px;
-    color: #7289da;
+    color: rgba(69, 68, 68, 1);
   }

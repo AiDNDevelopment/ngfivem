@@ -2073,3 +2073,21 @@
 {"level":"debug","message":"Checking for missing framework dependencies","module":"boot","timestamp":"2023-08-05T12:48:06.070Z"}
 {"level":"debug","message":"No missing dependencies were detected","module":"boot","timestamp":"2023-08-05T12:48:06.071Z"}
 {"level":"debug","message":"1 failed to unload, likely was never loaded in the first place.","module":"player","timestamp":"2023-08-05T12:48:47.449Z"}
+{"level":"debug","message":"Boot service started","module":"boot","timestamp":"2023-08-05T18:13:47.229Z"}
+{"level":"debug","message":"Marketplace service started","module":"marketplace","timestamp":"2023-08-05T18:13:47.236Z"}
+{"level":"debug","message":"Player Service started","module":"player","timestamp":"2023-08-05T18:13:47.236Z"}
+{"level":"debug","message":"Call service started","module":"calls","timestamp":"2023-08-05T18:13:47.238Z"}
+{"level":"debug","message":"Messages service started","module":"messages","timestamp":"2023-08-05T18:13:47.238Z"}
+{"level":"debug","message":"Notes service started","module":"notes","timestamp":"2023-08-05T18:13:47.239Z"}
+{"level":"debug","message":"Contacts service started","module":"contact","timestamp":"2023-08-05T18:13:47.239Z"}
+{"level":"debug","message":"Photo service started","module":"photo","timestamp":"2023-08-05T18:13:47.256Z"}
+{"level":"debug","message":"Twitter service started","module":"twitter","timestamp":"2023-08-05T18:13:47.256Z"}
+{"level":"debug","message":"Match service started","module":"match","timestamp":"2023-08-05T18:13:47.256Z"}
+{"level":"debug","message":"Beginning database schema validation","module":"boot","timestamp":"2023-08-05T18:13:50.642Z"}
+{"level":"info","message":"Successfully started","timestamp":"2023-08-05T18:13:50.648Z"}
+{"level":"info","message":"Executed query (SHOW TABLES WHERE `Tables_in_QBCoreFramework_AFDC8C`LIKE ? [\"players\"]) in 164.8807ms'","module":"DBInterface","timestamp":"2023-08-05T18:13:50.807Z"}
+{"level":"info","message":"Executed query (SHOW COLUMNS IN players []) in 158.011ms'","module":"DBInterface","timestamp":"2023-08-05T18:13:50.966Z"}
+{"level":"debug","message":"Database schema successfully validated","module":"boot","timestamp":"2023-08-05T18:13:50.966Z"}
+{"level":"debug","message":"Checking for missing framework dependencies","module":"boot","timestamp":"2023-08-05T18:13:50.966Z"}
+{"level":"debug","message":"No missing dependencies were detected","module":"boot","timestamp":"2023-08-05T18:13:50.967Z"}
+{"level":"debug","message":"1 failed to unload, likely was never loaded in the first place.","module":"player","timestamp":"2023-08-05T18:14:51.795Z"}
