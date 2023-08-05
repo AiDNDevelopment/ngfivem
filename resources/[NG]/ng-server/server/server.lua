@@ -2,9 +2,9 @@ local QBCore = exports['qb-core']:GetCoreObject()
 local NewbColor = {255, 255, 0}
 local hiddenPlayers = {}
 
---Materials Functions
-
---add Materials packages
+--START MATERIAL RUNNING FUNCTIONS
+--
+--ADD MATERIAL PACKAGES TO THE PLAYER
 RegisterNetEvent('addMatPackage', function()
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
@@ -13,7 +13,7 @@ RegisterNetEvent('addMatPackage', function()
     
 end)
 
--- Remove Materials Packages
+-- REMOVE MATERIAL PACKAGES FROM THE PLAYER
 RegisterNetEvent('removeMatPackages', function()
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
@@ -21,7 +21,7 @@ RegisterNetEvent('removeMatPackages', function()
     Player.Functions.RemoveItem('matpackage', 1)
 end)
 
---Reward the player with gunparts
+--PLAYER REWARD FOR COMPLETING THE RUN
 RegisterNetEvent('playerMatReward', function()
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
@@ -29,17 +29,18 @@ RegisterNetEvent('playerMatReward', function()
     Player.Functions.AddItem('gunparts', 1)
 end)
 
+--HIGH PLAYER REWARD (IN PREPERATION FOR VIP)
 RegisterNetEvent('playerMatRewardHigh', function()
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
 
     Player.Functions.AddItem('gunparts', 1)
 end)
----End Materials Functions
+--END MATERIAL RUNNING FUNCTIONS
 
----Commands
-
--- Newb command
+--START COMMANDS
+--
+-- /NEWB COMMAND
 QBCore.Commands.Add('newb', 'Send a message to the Newb Channel', {}, false, function(source, args)
     if hiddenPlayers[source] then
         TriggerClientEvent('chat:addMessage', source, {
@@ -64,7 +65,7 @@ QBCore.Commands.Add('newb', 'Send a message to the Newb Channel', {}, false, fun
     end
 end, 'user')
 
--- Toggles newb
+-- /TOGNEWB COMMAND
 QBCore.Commands.Add('tognewb', 'Toggle visibility of newb messages', {}, false, function(source)
     if hiddenPlayers[source] then
         hiddenPlayers[source] = nil
@@ -82,4 +83,9 @@ QBCore.Commands.Add('tognewb', 'Toggle visibility of newb messages', {}, false, 
         })
     end
 end, 'user')
---End commands
+
+--/CANCELRUN COMMAND
+QBCore.Commands.Add('cancelrun', 'cancels last material run and removes the vehicle', {}, false, function(source)
+    TriggerClientEvent("deleteVehicle", source)
+end,false)
+--END COMMANDS

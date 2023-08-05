@@ -7,11 +7,11 @@ const load = Vue.createApp({
     return {
       CarouselText1: 'If you are downed you have 6 minutes before you are automatically admitted to the emergency room.',
       CarouselSubText1: 'Photo captured by: Markyoo#8068',
-      CarouselText2: `We've got plenty for you to waste your money on!`,
+      CarouselText2: `Some popular hangout spots include Legion and the hospital`,
       CarouselSubText2: 'Photo captured by: ihyajb#9723',
       CarouselText3: 'Join our development tests and earn rewards!.',
       CarouselSubText3: 'Photo captured by: FLAPZ[INACTIV]#9925',
-      CarouselText4: 'Guess who ran out of things to put as we went on xD',
+      CarouselText4: 'Remember we have /help and /newb if you need to learn the ropes!',
       CarouselSubText4: 'Photo captured by: Robinerino#1312',
 
       DownloadTitle: 'Preparing our city for you 👍',
@@ -41,7 +41,7 @@ const load = Vue.createApp({
       Keybind16: 'Cruise Control',
 
       version:'1.0.0',
-      updatedate: '04/08/2023', /*UK time ofc*/
+      updatedate: '05/08/2023', /*UK time ofc*/
       
 
       firstap: ref(true),

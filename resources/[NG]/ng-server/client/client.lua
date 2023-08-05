@@ -1,30 +1,9 @@
-local QBCore = exports['qb-core']:GetCoreObject()
 local PackageCount = 0
 local Zone = nil
+local spawnedVehicle
 
---Materials Pickup 1(Our Time:)
-CreateThread(function()
-    Zone = BoxZone:Create(vector3(704.64, -1142.62, 23.61), 6.4, 7, {
-        name="matCollection1",
-        heading=0,
-        debugPoly=true,
-        minZ=20.01,
-        maxZ=27.21
-      })
-      
-    Zone:onPlayerInOut(function(isPointInside)
-        if isPointInside and PackageCount == 0 then
-            DeliverPackages()
-        else if PackageCount == 1 then
-            Wait(5000)
-            TriggerEvent('qb-core:client:DrawText', 'I can’t hand over more than one package.', 'top')
-            Wait(5000)
-            TriggerEvent('qb-core:client:HideText')
-        end
-        end
-    end)
-end)
-
+--START MATERIAL RUNNING CLIENT SIDE SCRIPTS
+--
 --Materials Pickup 2 (Our Time:)
 CreateThread(function()
     Zone = BoxZone:Create(vector3(-655.87, -2451.1, 13.94), 10.2, 7, {
@@ -145,9 +124,12 @@ end)
 
 --This handles giving the player the package for delivery and instructing them on where to go. 
 function DeliverPackages()
+    
     PackageCount = 1 -- Adjust the package count to 1 so that we cant collect another
+    
     TriggerServerEvent('addMatPackage')
-    TriggerEvent('qb-core:client:DrawText', 'Get this package to my guy at Ammu-Nation #11.', 'top') -- Fancy notification at the top of the screen with this text
+    TriggerEvent('qb-core:client:DrawText', 'Get this package to my guy at Ammu-Nation #11.', 'right') -- Fancy notification at the top of the screen with this text
+    
 
     blip = AddBlipForCoord(802.93, -2135.77, 29.43) -- This is the marker blip, Having it anywhere else places the marker the entire time until 1 run has been done
     SetBlipSprite(blip, 286) -- All of this is the styling of the blip
@@ -223,3 +205,53 @@ function playerMatRewardHigh()
     Wait(5000)
     TriggerEvent('qb-core:client:HideText')
 end
+
+--MATERIAL PICKUP 1
+function MatPickup1()
+    if DoesEntityExist(spawnedVehicle) then
+        print("A vehicle is already spawned")
+        return
+    end
+
+    local vehicleModel = GetHashKey("burrito3")
+
+    print("Spawning burrito")
+
+    RequestModel(vehicleModel)
+    while not HasModelLoaded(vehicleModel) do
+        Wait(0)
+    end
+
+    spawnedVehicle = CreateVehicle(vehicleModel, 702.95, -1142.03, 23.67,89.47, true, false)
+    SetEntityAsMissionEntity(spawnedVehicle, true, true)
+
+    GetVehicleDoorLockStatus(spawnedVehicle)
+    SetVehicleDoorsLocked(spawnedVehicle, 1)
+
+    local playerPed = PlayerPedId()
+    TaskWarpPedIntoVehicle(playerPed, spawnedVehicle, -1)
+
+    return spawnedVehicle
+end
+
+RegisterNetEvent('matrun:client:matrun1', function()
+
+    if DoesEntityExist(spawnedVehicle) then
+        TriggerEvent('qb-core:client:DrawText', 'If you left the vehicle its toast', 'right')
+        Wait(5000)
+        TriggerEvent('qb-core:client:HideText')
+    else
+        MatPickup1()
+    end
+
+end)
+
+RegisterNetEvent('cancelrun', function()
+    if DoesEntityExist(spawnedVehicle) then
+        DeleteVehicle(spawnedVehicle)
+        print("Vehicle deleted")
+    else
+        print("No vehicle to delete")
+    end
+end)
+--END MATERIAL RUNNING CLIENT SIDE SCRIPTS

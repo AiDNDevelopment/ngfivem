@@ -80,6 +80,7 @@ Config.TargetBones = {
 }
 
 Config.TargetModels = {
+	
 
 }
 
@@ -100,7 +101,25 @@ Config.GlobalPlayerOptions = {
 }
 
 Config.Peds = {
-
+	{
+		model = 's_m_y_dealer_01',
+		coords = vector4(702.61, -1138.32, 22.72, 314.6),
+		networked = true,
+		freeze = true,
+		invincible = true, 
+		blockevents = true, 
+		target = {
+			options = {
+				{
+					type ="client",
+					event = "matrun:client:matrun1",
+					icon = "fas fa-handshake",
+					label = "Start Materials Run",
+				},
+			},
+			distance = 2.5
+		}
+	},
 }
 
 -------------------------------------------------------------------------------
