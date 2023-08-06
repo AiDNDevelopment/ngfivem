@@ -36,6 +36,42 @@ RegisterNetEvent('playerMatRewardHigh', function()
 
     Player.Functions.AddItem('gunparts', 1)
 end)
+
+RegisterNetEvent('matDrop1Instructions', function(playerID)
+    local player = QBCore.Functions.GetPlayer(playerID)
+
+    local phoneNumber = player.PlayerData.charinfo.phone
+
+    print(phoneNumber)
+    exports.npwd:emitMessage({
+        senderNumber = '???',
+        targetNumber = phoneNumber,
+        message = 'Get this vehicle to my guy.',
+        embed = {
+            type = "location",
+            coords = { 843.62, -2180.04, 30.3 },
+            phoneNumber = '911'
+        }
+    })
+end)
+
+RegisterNetEvent('stillNeedToStart', function(playerID)
+    local player = QBCore.Functions.GetPlayer(playerID)
+
+    local phoneNumber = player.PlayerData.charinfo.phone
+
+    print(phoneNumber)
+    exports.npwd:emitMessage({
+        senderNumber = '???',
+        targetNumber = phoneNumber,
+        message = 'This is his location',
+        embed = {
+            type = "location",
+            coords = { 843.62, -2180.04, 30.3 },
+            phoneNumber = '911'
+        }
+    })
+end)
 --END MATERIAL RUNNING FUNCTIONS
 
 --START COMMANDS
@@ -86,6 +122,6 @@ end, 'user')
 
 --/CANCELRUN COMMAND
 QBCore.Commands.Add('cancelrun', 'cancels last material run and removes the vehicle', {}, false, function(source)
-    TriggerClientEvent("deleteVehicle", source)
+    TriggerClientEvent("cancelrun", source)
 end,false)
 --END COMMANDS

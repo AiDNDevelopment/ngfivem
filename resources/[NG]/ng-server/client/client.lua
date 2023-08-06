@@ -1,9 +1,25 @@
 local PackageCount = 0
 local Zone = nil
-local spawnedVehicle
-
+local spawnedVehicle = nil
+local showMarker = false
 --START MATERIAL RUNNING CLIENT SIDE SCRIPTS
 --
+--MATERIAL PICKUP 1(Our Time:)
+RegisterNetEvent('matrun:client:matrun1', function()
+
+    if DoesEntityExist(spawnedVehicle) then
+        TriggerEvent('qb-core:client:DrawText', 'You already took a vehicle, If you left it then its toast', 'right')
+        Wait(5000)
+        TriggerEvent('qb-core:client:HideText')
+    else
+        MatPickup1()
+    end
+
+end)
+
+RegisterNetEvent('matrun:client:dropoff1', function()
+    MatDrop1()
+end)
 --Materials Pickup 2 (Our Time:)
 CreateThread(function()
     Zone = BoxZone:Create(vector3(-655.87, -2451.1, 13.94), 10.2, 7, {
@@ -231,27 +247,70 @@ function MatPickup1()
     local playerPed = PlayerPedId()
     TaskWarpPedIntoVehicle(playerPed, spawnedVehicle, -1)
 
+    local playerID = GetPlayerServerId(PlayerId())
+    TriggerServerEvent('matDrop1Instructions', playerID)
+
+    local x,y,z = 843.62, -2180.04, 30.3
+
+    Citizen.CreateThread(function()
+        while true do
+            Wait(0)
+            if showMarker then
+                DrawMarker(1, x, y, z - 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.5, 1.5, 1.5, 255, 255, 255, 255, false, false, false)
+            end
+        end
+    end)
+    showMarker = true
     return spawnedVehicle
 end
 
-RegisterNetEvent('matrun:client:matrun1', function()
-
+--vector3(843.62, -2180.04, 30.3)
+function MatDrop1()
     if DoesEntityExist(spawnedVehicle) then
-        TriggerEvent('qb-core:client:DrawText', 'If you left the vehicle its toast', 'right')
-        Wait(5000)
-        TriggerEvent('qb-core:client:HideText')
+        if IsMatDrop1VehInPlace(spawnedVehicle, 843.62, -2180.04, 30.3, 5.0) then
+            HideMarker()
+            TriggerEvent('qb-core:client:DrawText', 'Thanks, Heres your cut.', 'right')
+            Wait(3000)
+            TriggerEvent('qb-core:client:HideText')
+            DeleteVehicle(spawnedVehicle)
+        else 
+            TriggerEvent('qb-core:client:DrawText', 'Wheres the van?', 'right')
+            Wait(3000)
+            TriggerEvent('qb-core:client:HideText')
+        end
     else
-        MatPickup1()
+        local playerID = GetPlayerServerId(PlayerId())
+        TriggerEvent('qb-core:client:DrawText', 'Go see my buddy down the way.', 'right')
+        Wait(3000)
+        TriggerEvent('qb-core:client:HideText')
+        TriggerServerEvent('stillNeedToStart', playerID)
     end
+end
 
-end)
+function IsMatDrop1VehInPlace(vehicle, x, y, z, radius)
+    local vehicleCoords = GetEntityCoords(vehicle)
+    local distance = Vdist(vehicleCoords.x, vehicleCoords.y, vehicleCoords.z, x, y, z)
+    return distance <= radius
+end
+
+function HideMarker()
+    showMarker = false
+end
+
+function ShowMarker()
+    showMarker = true
+end
 
 RegisterNetEvent('cancelrun', function()
     if DoesEntityExist(spawnedVehicle) then
+        TriggerEvent('qb-core:client:DrawText', 'Run is being cancelled, Your vehicle will be removed', 'right')
+        Wait(3000)
+        TriggerEvent('qb-core:client:HideText')
         DeleteVehicle(spawnedVehicle)
-        print("Vehicle deleted")
     else
-        print("No vehicle to delete")
+        TriggerEvent('qb-core:client:DrawText', 'You cant cancel a run that doesnt exist', 'right')
+        Wait(1000)
+        TriggerEvent('qb-core:client:HideText')
     end
 end)
 --END MATERIAL RUNNING CLIENT SIDE SCRIPTS

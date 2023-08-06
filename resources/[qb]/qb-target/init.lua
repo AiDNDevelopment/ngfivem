@@ -101,7 +101,7 @@ Config.GlobalPlayerOptions = {
 }
 
 Config.Peds = {
-	{
+	{ -- Mat Pickp 1
 		model = 's_m_y_dealer_01',
 		coords = vector4(702.61, -1138.32, 22.72, 314.6),
 		networked = true,
@@ -115,6 +115,25 @@ Config.Peds = {
 					event = "matrun:client:matrun1",
 					icon = "fas fa-handshake",
 					label = "Start Materials Run",
+				},
+			},
+			distance = 2.5
+		}
+	},
+	{ -- Mat Pickp 2
+		model = 's_m_y_dealer_01',
+		coords = vector4(830.27, -2173.32, 29.29, 290.82),
+		networked = true,
+		freeze = true,
+		invincible = true, 
+		blockevents = true, 
+		target = {
+			options = {
+				{
+					type ="client",
+					event = "matrun:client:dropoff1",
+					icon = "fas fa-handshake",
+					label = "Finish Materials Run",
 				},
 			},
 			distance = 2.5
