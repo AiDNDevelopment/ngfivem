@@ -103,7 +103,7 @@ body {
 .button {
   width: auto;
   height: 10%;
-  background: rgba(23, 23, 23, 90%);
+  background: rgba(69, 68, 68, 1);
   color: white;
   margin: auto;
   position: relative;
@@ -116,6 +116,7 @@ body {
   flex-direction: column;
   box-shadow: 0rem 0rem 0.5rem 0.05rem #000000;
   cursor: pointer;
+  box-shadow: inset 0px 0px 0px 1px black;
 }
 
 .icon {
@@ -126,13 +127,13 @@ body {
 }
 
 .button:hover {
-  background-color: #dc143c;
+  background-color: rgba(68,117,182,1);
 }
 
 .title {
   width: auto;
   height: 10%;
-  background: rgba(23, 23, 23, 90%);
+  background: rgba(69, 68, 68, 1);
   color: white;
   margin: auto;
   position: relative;
@@ -144,6 +145,7 @@ body {
   display: flex;
   flex-direction: column;
   box-shadow: 0rem 0rem 0.5rem 0.05rem #000000;
+  box-shadow: inset 0px 0px 0px 1px black;
 }
 
 .title > div.column > div.header {
