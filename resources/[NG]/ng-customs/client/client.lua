@@ -83,6 +83,22 @@ function openSpoilerMenu(vehicle)
             TriggerEvent('attachSpoilerClient', vehicle, 1)
         elseif accept == "2" then
             TriggerEvent('attachSpoilerClient', vehicle, 2)
+        elseif accept == "3" then
+            TriggerEvent('attachSpoilerClient', vehicle, 3)
+        elseif accept == "4" then
+            TriggerEvent('attachSpoilerClient', vehicle, 4)
+        elseif accept == "5" then
+            TriggerEvent('attachSpoilerClient', vehicle, 5)
+        elseif accept == "6" then
+            TriggerEvent('attachSpoilerClient', vehicle, 6)
+        elseif accept == "7" then
+            TriggerEvent('attachSpoilerClient', vehicle, 7)
+        elseif accept == "8" then
+            TriggerEvent('attachSpoilerClient', vehicle, 8)
+        elseif accept == "9" then
+            TriggerEvent('attachSpoilerClient', vehicle, 9)
+        elseif accept == "10" then
+            TriggerEvent('attachSpoilerClient', vehicle, 10)
         end
     end
 end
