@@ -1,7 +1,8 @@
+local QBCore = exports['qb-core']:GetCoreObject()
+
 local spawnedVehicle = nil
 local showMarker = false
---START MATERIAL RUNNING CLIENT SIDE SCRIPTS
---
+
 --MATERIAL PICKUP 1(Our Time:)
 RegisterNetEvent('matrun:client:matrun1', function()
     if DoesEntityExist(spawnedVehicle) then
@@ -317,5 +318,3 @@ RegisterNetEvent('cancelrun', function()
         TriggerEvent('qb-core:client:HideText')
     end
 end)
---
---END MATERIAL RUNNING CLIENT SIDE SCRIPTS
