@@ -12,7 +12,5 @@ server_scripts{
 }
 
 dependencies {
-    'chat',
     'qb-core',
-    'qb-vehiclekeys',
 }
