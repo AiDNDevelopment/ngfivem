@@ -103,7 +103,7 @@ body {
 .button {
   width: auto;
   height: 10%;
-  background: rgba(69, 68, 68, 1);
+  background: rgba(0, 0, 0, 0.3);
   color: white;
   margin: auto;
   position: relative;
@@ -111,6 +111,7 @@ body {
   margin-top: 0.5rem;
   overflow: hidden;
   padding: 0.45rem;
+  border: white;
   border-radius: 0.15rem;
   display: flex;
   flex-direction: column;
@@ -127,7 +128,7 @@ body {
 }
 
 .button:hover {
-  background-color: rgba(68,117,182,1);
+  background-color: rgba(68,117,182,.3);
 }
 
 .title {

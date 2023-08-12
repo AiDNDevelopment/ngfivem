@@ -192,7 +192,22 @@
                         </q-item>
                         <q-item>
                             <q-item-section>
-                                As this is our official Launch (hooray!) keep your eyes on this section in the coming days / weeks and we're sure you'll see this change! For more up to date information please join us over on our discord (you can click the icon at the bottom of the screen to get there)!
+                                1 As this is our official Launch (hooray!) keep your eyes on this section in the coming days / weeks and we're sure you'll see this change! For more up to date information please join us over on our discord (you can click the icon at the bottom of the screen to get there)!
+                            </q-item-section>
+                        </q-item>
+                        <q-item>
+                            <q-item-section>
+                                2 As this is our official Launch (hooray!) keep your eyes on this section in the coming days / weeks and we're sure you'll see this change! For more up to date information please join us over on our discord (you can click the icon at the bottom of the screen to get there)!
+                            </q-item-section>
+                        </q-item>
+                        <q-item>
+                            <q-item-section>
+                                3 As this is our official Launch (hooray!) keep your eyes on this section in the coming days / weeks and we're sure you'll see this change! For more up to date information please join us over on our discord (you can click the icon at the bottom of the screen to get there)!
+                            </q-item-section>
+                        </q-item>
+                        <q-item>
+                            <q-item-section>
+                                4 As this is our official Launch (hooray!) keep your eyes on this section in the coming days / weeks and we're sure you'll see this change! For more up to date information please join us over on our discord (you can click the icon at the bottom of the screen to get there)!
                             </q-item-section>
                         </q-item>
                     </q-list>
@@ -200,32 +215,28 @@
 
                   <q-card flat id="rules" class="bg-transparent text-white">
                     <q-card-section>
-                      <div class="text-h6">Basic Rules</div>
+                      <div class="text-h6">Important basic rules</div>
                     </q-card-section>
                     <q-separator dark></q-separator>
                     <q-list dense bordered padding class="rounded-borders">
                         <q-item>
                             <q-item-section>
-                                - No VDM / RDM
+                                * - RDM / VDM Is strictly forbidden: Play nice with others.
                             </q-item-section>
                         </q-item>
                         <q-item>
                             <q-item-section>
-                                - No plane bombing
+                                * - No vulgar or exrteme RP: Topics such as terrorism and r*pe.
                             </q-item-section>
                         </q-item>
                         <q-item>
                             <q-item-section>
-                                - No unconsented vulgar or extreme RP
-                        </q-item>
-                        <q-item>
-                            <q-item-section>
-                                - Value your life!
+                                * - Value your life: You might respawn but lets pretend we don't.
                             </q-item-section>
                         </q-item>
                         <q-item>
                             <q-item-section>
-                                - Staff decisions are final
+                                * - Staff Decisions are final: We don't like bringing down the hammer.
                             </q-item-section>
                         </q-item>
                     </q-list>
@@ -244,18 +255,13 @@
                         <img class="cursor-none brand-logo" src="/assets/branding/nglogo.png"></img>
                         <q-space></q-space>
                         <q-btn :ripple="false" flat size="xl" icon="downloading" color="white" @click="download = true"></q-btn>
-                        <div class="progress-text"id="typing-text"></div>
-                        <div class="loadingbar">
-                            <div class="loadbar"><div class="thingy"></div></div>
-                        </div>
-                        
                         <q-btn icon="settings_suggest" color="bgbutton" @click="settings = true"></q-btn>
                     </q-card-section>
                 </q-card>
             </div>
 
-            <q-dialog no-shake v-model="download" position="bottom">
-                <q-card style="max-width: 400px; margin-left: 50vw; margin-bottom: 13vh; background-color: rgba(69, 68, 68, 1); color: white">
+            <q-dialog no-shake v-model="download" position="right">
+                <q-card style="max-width: 400px; margin-right: 3.4vw; top: 20vh!important; background-color: rgba(69, 68, 68, 1); color: white">
                     <q-card-section>
                         <div style="white-space: pre-wrap;" class="text-h6">
                             {{ DownloadTitle }}
@@ -283,6 +289,10 @@
                     </q-card-section>
 
                     <q-card-section style="padding-top: 0px;">
+                        <q-toggle v-model="audioplay" size="lg" checked-icon="headset" keep-color color="togglecolor" label="Audio-track Enabled" unchecked-icon="headset_off" onclick="audiotoggle()"></q-toggle>
+                        <div style="white-space: pre-wrap;" class="text-h7 text-weight-medium q-mb-md-d">
+                            {{ AudioTrackDesc1 }}
+                        </div>
                         <q-toggle v-model="secondap" size="lg" checked-icon="view_carousel" keep-color color="togglecolor" label="Auto-play Enabled" unchecked-icon="image"></q-toggle>
                         <div style="white-space: pre-wrap;" class="text-h7 text-weight-medium q-mb-md-d">
                             {{ AutoPlayDesc2 }}
