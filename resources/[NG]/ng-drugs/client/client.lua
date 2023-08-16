@@ -1,127 +1,130 @@
+local QBCore = exports['qb-core']:GetCoreObject()
 
-local zoneX = -1351.5
-local zoneY = 4421.07
-local zoneRadius = 100
+local spawnedPlants = {}
+local maxPlants = 5
+local spawnInterval = 1800 -- Respawn interval in seconds (30 minutes)
+local interactionRadius = 2.0
 
-local spawnedProps = {}
+local spawnCenter = vector2(-1369.19, 4421.76) -- Change to your desired x, y coordinates
 
-local minDistance = 10
-
--- Number of weed plants to spawn
-local numWeedPlants = 100
-
-
-function SpawnWeedPlant(x, y, z)
-    local weedObject = GetHashKey(Config.PlantModel)
-    local weedEntity = CreateObjectNoOffset(weedObject, x, y, z, true, false, true)
-    table.insert(spawnedProps, weedEntity)
+local function findGroundZ(coord)
+    local _, groundZ, _ = GetGroundZFor_3dCoord(coord.x, coord.y, 1000.0, 0.0)
+    return groundZ
 end
 
-function getDistance(x1, y1, x2, y2)
-    return math.sqrt((x2-x1) ^ 2 + (y2 - y1) ^ 2)
-end
-
--- Function to generate random positions within the defined zone
-function GenerateRandomPositionInZone()
-    local randomX, randomY
-
-    -- Generate random positions until a valid position is found
-    while true do
-        local randomAngle = math.rad(math.random(360)) -- Random angle in radians
-        local randomDistance = math.random() * zoneRadius
-
-        randomX = zoneX + randomDistance * math.cos(randomAngle)
-        randomY = zoneY + randomDistance * math.sin(randomAngle)
-
-        -- Check if the generated position is far enough from existing weed plants
-        local isValid = true
-        for i, prop in ipairs(spawnedProps) do
-            local propX, propY = table.unpack(GetEntityCoords(prop))
-            local distance = getDistance(randomX, randomY, propX, propY)
-            if distance < minDistance then
-                isValid = false
-                break
-            end
+local function spawnPlant()
+    local plantModel = "prop_weed_01"
+    local spawnOffsetX = math.random(-5, 5)
+    local spawnOffsetY = math.random(-5, 5)
+    
+    local groundZ = findGroundZ(vector2(spawnCenter.x + spawnOffsetX, spawnCenter.y + spawnOffsetY))
+    if groundZ then
+        local plantCoords = vector3(
+            spawnCenter.x + spawnOffsetX,
+            spawnCenter.y + spawnOffsetY,
+            groundZ
+        )
+        
+        local plantObject = CreateObject(GetHashKey(plantModel), plantCoords.x, plantCoords.y, plantCoords.z, true, true, true)
+        if DoesEntityExist(plantObject) then
+            print("Spawned a plant object:", plantObject)
+            return plantObject
+        else
+            print("Failed to spawn plant.")
+            return nil
         end
-
-        if isValid then
-            break
-        end
-    end
-
-    return randomX, randomY
-end
-
-function RegisterWeedPlantTargets(spawnedProps)
-    for i, prop in ipairs(spawnedProps) do
-        local eventName = "ng-drugs:client:interactWeedPlant" .. i
-        local args = i
-        exports["qb-target"]:AddBoxZone("WeedPlant" .. i, GetEntityCoords(prop), 1.0, 1.0, {
-            name = "WeedPlant" .. i,
-            heading = 0,
-            debugPoly = true,
-            minZ = GetEntityCoords(prop).z,
-            maxZ = GetEntityCoords(prop).z + 1.0
-        }, {
-            options = {
-                {
-                    type = 'client',
-                    event = eventName,
-                    icon = "fas fa-cannabis",
-                    label = "Interact with weed plant",
-                }
-            },
-            distance = 1.5
-        })
-
-        RegisterPlantInteractionHandler(eventName, i)
+    else
+        print("Failed to find ground level.")
+        return nil
     end
 end
 
-function RegisterPlantInteractionHandler(eventName, index)
-    RegisterNetEvent(eventName)
-    AddEventHandler(eventName, function()
-        local plantIndex = index
-        TriggerServerEvent("ng-drugs:server:interactWeedPlant", plantIndex)
+local function deletePlant(plantObject)
+    if DoesEntityExist(plantObject) then
+        DeleteObject(plantObject)
+        print("Deleted plant object:", plantObject)
+    end
+end
+
+local function interactWithPlant(plantObject)
+    -- Perform the interaction logic here
+    print("Interacted with plant:", plantObject)
+    
+    -- Delete the current plant
+    deletePlant(plantObject)
+    QBCore.Functions.TriggerCallback("rewardPlayer", function(success)
+        if success then 
+            TriggerEvent('inventory:client:itemBox', QBCore.Shared.Items["coca_leaf"], "add")
+        else
+            QBCore.Functions.Notify("Could not add item to inventory.", "error")
+        end
+    end)
+    
+    Citizen.CreateThread(function()
+        Citizen.Wait(10000) -- Wait for 10 seconds
+        
+        -- Spawn a new plant
+        local newPlantObject = spawnPlant()
+        if newPlantObject then
+            table.insert(spawnedPlants, newPlantObject)
+        end
     end)
 end
 
--- Generate random positions within the zone and spawn weed plants
-for i = 1, numWeedPlants do
-    local randomX, randomY = GenerateRandomPositionInZone()
-    local foundGround, groundZ = GetGroundZFor_3dCoord(randomX, randomY, 1000.0)
-    if foundGround then
-        SpawnWeedPlant(randomX, randomY, groundZ)
-    end
-end
-
-RegisterWeedPlantTargets(spawnedProps)
-
-RegisterNetEvent("ng-drugs:client:deletePlant", function(plantIndex)
-    print(plantIndex)
-    local prop = spawnedProps[plantIndex]
-    if DoesEntityExist(prop) then 
-        DeleteObject(prop)
-        spawnedProps[plantIndex] = nil
-        local zoneName = "WeedPlant" .. plantIndex
-        exports["qb-target"]:RemoveZone(zoneName)
-    end
-end)
-
-AddEventHandler("onResourceStop", function(resourceName)
-    if (GetCurrentResourceName() ~= resourceName) then 
-        return
-    end
-
-    for i, prop in pairs(spawnedProps) do 
-        if DoesEntityExist(prop) then 
-            DeleteObject(prop)
+RegisterNetEvent("spawnCokePlants")
+AddEventHandler("spawnCokePlants", function()
+    print("Spawn coke plants event triggered.")
+    for i = 1, maxPlants do
+        local plantObject = spawnPlant()
+        if plantObject then
+            table.insert(spawnedPlants, plantObject)
         end
     end
-
-    for i, prop in pairs(spawnedProps) do 
-        exports["qb-target"]:RemoveZone("WeedPlant" .. i)
-    end
-
-    spawnedProps = {}
 end)
+
+AddEventHandler("onClientMapStart", function()
+    TriggerEvent("spawnCokePlants")
+end)
+
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(0)
+
+        local playerPed = PlayerPedId()
+        local playerCoords = GetEntityCoords(playerPed)
+
+        for _, plantObject in ipairs(spawnedPlants) do
+            local plantCoords = GetEntityCoords(plantObject)
+            local distance = Vdist(playerCoords.x, playerCoords.y, playerCoords.z, plantCoords.x, plantCoords.y, plantCoords.z)
+
+            if distance <= interactionRadius then
+                -- Display UI prompt for interaction
+                DrawText3D(plantCoords.x, plantCoords.y, plantCoords.z + 1.0, "[E] Harvest")
+
+                -- Check if the player pressed the "E" key
+                if IsControlJustReleased(0, 38) then -- "E" key
+                    interactWithPlant(plantObject)
+                end
+            end
+        end
+    end
+end)
+
+-- Helper function to display 3D text
+function DrawText3D(x, y, z, text)
+    local onScreen, _x, _y = World3dToScreen2d(x, y, z)
+    if onScreen then
+        SetTextScale(0.35, 0.35)
+        SetTextFont(4)
+        SetTextProportional(1)
+        SetTextColour(255, 255, 255, 215)
+        SetTextDropshadow(0, 0, 0, 0, 255)
+        SetTextEdge(2, 0, 0, 0, 150)
+        SetTextDropShadow()
+        SetTextOutline()
+        SetTextCentre(1)
+        SetTextEntry("STRING")
+        AddTextComponentString(text)
+        DrawText(_x, _y)
+    end
+end

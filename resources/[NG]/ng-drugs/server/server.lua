@@ -1,19 +1,25 @@
 local QBCore = exports['qb-core']:GetCoreObject()
-local interactedPlants = {} 
 
-RegisterNetEvent("ng-drugs:server:interactWeedPlant", function(plantIndex)
-    local source = source
-    
-    -- Check if the plant has already been interacted with
-    if not interactedPlants[plantIndex] then
-        interactedPlants[plantIndex] = true -- Mark the plant as interacted
-        
-        print("Interacted with plant " .. plantIndex)
-        TriggerClientEvent("QBCore:Notify", source, 'You have interacted', 'success')
-        
-        -- Call your function to delete the plant on the client side
-        TriggerClientEvent("DeletePlant", source, plantIndex)
+AddEventHandler("onResourceStart", function(resourceName)
+    if resourceName == GetCurrentResourceName then 
+        TriggerEvent("spawnCokePlants")
+    end
+end)
+
+RegisterServerEvent("spawnCokePlants")
+AddEventHandler("spawnCokePlants", function()
+    local _source = source
+    TriggerClientEvent("spawnCokePlants", _source)
+end)
+
+QBCore.Functions.CreateCallback('rewardPlayer', function(source, cb) 
+    local player = QBCore.Functions.GetPlayer(source)
+    if not player then return cb(false) end
+    local ammount = math.random(1, 5)
+    if player.Functions.AddItem("coca_leaf", ammount) then 
+        TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items["coca_leaf"], "add", ammount)
+        cb(true)
     else
-        print("Plant " .. plantIndex .. " has already been interacted with.")
+        cb(false)
     end
 end)
