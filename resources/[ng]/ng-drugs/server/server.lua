@@ -1,13 +1,8 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
-AddEventHandler("onResourceStart", function(resourceName)
-    if resourceName == GetCurrentResourceName then 
-        TriggerEvent("spawnCokePlants")
-    end
-end)
-
 RegisterServerEvent("spawnCokePlants")
 AddEventHandler("spawnCokePlants", function()
+    print("Server spawn coke plants triggered")
     local _source = source
     TriggerClientEvent("spawnCokePlants", _source)
 end)

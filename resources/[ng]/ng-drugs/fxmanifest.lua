@@ -6,9 +6,13 @@ shared_scripts{
 }
 
 client_scripts{
-    'client/client.lua'
+    'client/client.lua',
 }
 
 server_scripts{
     'server/server.lua',
+}
+
+dependencies{
+    'qb-core'
 }
