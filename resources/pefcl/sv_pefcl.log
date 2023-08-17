@@ -5862,3 +5862,31 @@
 {"level":"debug","message":"Retrieving accounts","module":"accounts","timestamp":"2023-08-17T13:14:48.376Z"}
 {"level":"silly","message":"Response Promise Event pefcl:getAccounts:989defbe-2a19-49e2-bfb1-7bfc6565b4bd (21.887ms), Data >>","module":"events","timestamp":"2023-08-17T13:14:48.397Z"}
 {"level":"silly","message":{"data":[{"accountName":"Personal account","balance":9551,"createdAt":"31/07/2023, 20:47:02","deletedAt":null,"id":1,"isDefault":true,"number":"920,0602-0734-2344","ownerIdentifier":"WMS95917","role":"owner","type":"personal","updatedAt":"2023-08-17T12:44:47.000Z"},{"accountName":"Los Santos Police","balance":500,"createdAt":"31/07/2023, 21:43:00","deletedAt":null,"id":2,"isDefault":true,"number":"920,1824-1453-0667","ownerIdentifier":"police","role":"admin","type":"shared","updatedAt":"2023-07-31T20:43:00.000Z"},{"accountName":"Los Santos EMS","balance":500,"createdAt":"11/08/2023, 19:02:16","deletedAt":null,"id":4,"isDefault":true,"number":"920,8876-0340-2603","ownerIdentifier":"ambulance","role":"admin","type":"shared","updatedAt":"2023-08-11T18:02:16.000Z"}],"status":"ok"},"module":"events","timestamp":"2023-08-17T13:14:48.397Z"}
+{"level":"debug","message":"Initializing...","module":"base","timestamp":"2023-08-17T17:57:35.008Z"}
+{"level":"debug","message":"Initialized Boot controller","module":"base","timestamp":"2023-08-17T17:57:35.014Z"}
+{"level":"debug","message":"Initialized User controller","module":"base","timestamp":"2023-08-17T17:57:35.015Z"}
+{"level":"debug","message":"Initialized Cash controller","module":"base","timestamp":"2023-08-17T17:57:35.016Z"}
+{"level":"debug","message":"Initialized Invoice controller","module":"base","timestamp":"2023-08-17T17:57:35.016Z"}
+{"level":"debug","message":"Initialized Account controller","module":"base","timestamp":"2023-08-17T17:57:35.017Z"}
+{"level":"debug","message":"Initialized Transaction controller","module":"base","timestamp":"2023-08-17T17:57:35.017Z"}
+{"level":"debug","message":"Initialized Broadcast controller","module":"base","timestamp":"2023-08-17T17:57:35.017Z"}
+{"level":"debug","message":"Loading language from config: en","module":"i18n","timestamp":"2023-08-17T17:57:35.018Z"}
+{"level":"debug","message":"Checking database connection ..","module":"boot","timestamp":"2023-08-17T17:57:37.515Z"}
+{"level":"debug","message":"Connected to database.","module":"boot","timestamp":"2023-08-17T17:57:37.715Z"}
+{"level":"info","message":"Framework integration is enabled.","module":"boot","timestamp":"2023-08-17T17:57:37.716Z"}
+{"level":"debug","message":"Verifying exports ..","module":"boot","timestamp":"2023-08-17T17:57:37.716Z"}
+{"level":"debug","message":"Checking exports from resource: qb-pefcl","module":"frameworkIntegration","timestamp":"2023-08-17T17:57:37.716Z"}
+{"level":"info","message":"Starting pefcl.","module":"boot","timestamp":"2023-08-17T17:57:37.718Z"}
+{"level":"debug","message":"Loading player for pefcl.","module":"user","timestamp":"2023-08-17T18:08:13.634Z"}
+{"level":"debug","message":{"identifier":"WMS95917","name":"Aidan Test","source":1},"module":"user","timestamp":"2023-08-17T18:08:13.635Z"}
+{"level":"debug","message":"Player loaded. Emitting: pefcl:userLoaded","module":"user","timestamp":"2023-08-17T18:08:13.639Z"}
+{"level":"silly","message":"Checking if default account exists for source: 1","module":"accounts","timestamp":"2023-08-17T18:08:13.670Z"}
+{"level":"silly","message":"Identifier: WMS95917","module":"accounts","timestamp":"2023-08-17T18:08:13.670Z"}
+{"level":"silly","message":"Default account exists.","module":"accounts","timestamp":"2023-08-17T18:08:13.839Z"}
+{"level":"debug","message":"Adding user to unique account ..","module":"accounts","timestamp":"2023-08-17T18:08:13.846Z"}
+{"level":"debug","message":"User already exists in shared account. (You can safely ignore this)","module":"accounts","timestamp":"2023-08-17T18:08:13.865Z"}
+{"level":"silly","message":"netPromise > pefcl:getAccounts > RequestObj","module":"events","timestamp":"2023-08-17T18:08:14.019Z"}
+{"level":"silly","message":{"data":null,"source":1},"module":"events","timestamp":"2023-08-17T18:08:14.020Z"}
+{"level":"debug","message":"Retrieving accounts","module":"accounts","timestamp":"2023-08-17T18:08:14.020Z"}
+{"level":"silly","message":"Response Promise Event pefcl:getAccounts:a03a946c-2612-44c4-8ad3-a5be83399fed (25.3474ms), Data >>","module":"events","timestamp":"2023-08-17T18:08:14.044Z"}
+{"level":"silly","message":{"data":[{"accountName":"Personal account","balance":9551,"createdAt":"31/07/2023, 20:47:02","deletedAt":null,"id":1,"isDefault":true,"number":"920,0602-0734-2344","ownerIdentifier":"WMS95917","role":"owner","type":"personal","updatedAt":"2023-08-17T12:44:47.000Z"},{"accountName":"Los Santos Police","balance":500,"createdAt":"31/07/2023, 21:43:00","deletedAt":null,"id":2,"isDefault":true,"number":"920,1824-1453-0667","ownerIdentifier":"police","role":"admin","type":"shared","updatedAt":"2023-07-31T20:43:00.000Z"},{"accountName":"Los Santos EMS","balance":500,"createdAt":"11/08/2023, 19:02:16","deletedAt":null,"id":4,"isDefault":true,"number":"920,8876-0340-2603","ownerIdentifier":"ambulance","role":"admin","type":"shared","updatedAt":"2023-08-11T18:02:16.000Z"}],"status":"ok"},"module":"events","timestamp":"2023-08-17T18:08:14.045Z"}
