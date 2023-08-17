@@ -302,13 +302,13 @@ Config.Teleports = {
     [2] = {
         [1] = {
             ['poly'] = {
-                coords = vector3(909.49, -1589.22, 30.51),
+                coords = vector3(1644.28, 4858.08, 42.01),
                 heading = 92.24,
                 length = 2,
                 width = 2
             },
             ["AllowVehicle"] = false,
-            label = '[E] Enter Coke Processing'
+            label = '[E] Leave'
         },
         [2] = {
             ['poly'] = {
@@ -318,7 +318,7 @@ Config.Teleports = {
                 width = 2
             },
             ["AllowVehicle"] = false,
-            label = '[E] Leave'
+            label = '[E] Enter Coke Processing'
         }
     }
 }

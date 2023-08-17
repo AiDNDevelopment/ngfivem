@@ -1,32 +1,30 @@
 local QBCore = exports['qb-core']:GetCoreObject()
-
+--#region Variable
+--Coke Plant Variables
 local spawnedPlants = {}
 local maxPlants = 200
-local interactionRadius = 2.0
-
-local spawnCenter = vector2(-1369.19, 4421.76) -- Change to your desired x, y coordinates
+local interactionRadius = 1.0
+local spawnCenter = vector2(-1369.19, 4421.76)
 local spawnRadius = 45
+local hasSpawnedPlants = false
 
-local hasSpawnedPlants = false -- Variable to track if plants have been spawned
-
+--Coke Processing Variables
 local cokeProcessingZones = {
-    vector3(1389.72, 3603.41, 38.94),
-    vector3(1388.96, 3605.72, 38.94),
-    vector3(1390.08, 3608.93, 38.94),
-    vector3(1394.67, 3601.89, 38.94),
-    vector3(1391.89, 3605.87, 38.94),
+    vector3(1090.33, -3196.66, -38.99),
+    vector3(1092.87, -3196.67, -38.99),
+    vector3(1095.79, -3196.62, -38.99),
+    vector3(1087.24, -3197.46, -38.99),
 }
-
-
 local isProcessing = false
 local currentStep = 0
-
 local weighZones = {
-    vector3(1396.98, 3605.31, 38.94),
-    vector3(1394.28, 3610.33, 38.94)
+    vector3(1090.5, -3194.83, -38.99),
+    vector3(1092.98, -3194.83, -38.99),
+    vector3(1095.35, -3194.82, -38.99),
+    vector3(1100.83, -3198.73, -38.99),
 }
-
 local isWeighing = false
+--#endregion Variables
 
 --#region Coke picking
 RegisterNetEvent("QBCore:client:onPlayerLoaded", function()
@@ -325,3 +323,5 @@ AddEventHandler("startWeighing", function()
     end
 end)
 --#endregion Coke Processing
+
+--#region

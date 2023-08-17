@@ -1,5 +1,6 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
+--#region Coke harvesting
 RegisterServerEvent("spawnCokePlants")
 AddEventHandler("spawnCokePlants", function()
     print("Server spawn coke plants triggered")
@@ -18,7 +19,9 @@ QBCore.Functions.CreateCallback('rewardPlayer', function(source, cb)
         cb(false)
     end
 end)
+--#endregion
 
+--#region Coke Processing
 RegisterServerEvent("processCocaLeaves")
 AddEventHandler("processCocaLeaves", function()
     local source = source -- The player's server ID
@@ -50,7 +53,9 @@ QBCore.Functions.CreateCallback('rewardProcessing', function(source, cb)
         cb(false)
     end
 end)
+--#endregion
 
+--#region Coke Weighing
 RegisterServerEvent("weighCoke")
 AddEventHandler("weighCoke", function()
     local source = source
@@ -99,3 +104,6 @@ QBCore.Functions.CreateCallback('weighReward', function(source, cb)
         cb(false)
     end
 end)
+--#endregion
+
+--#region
