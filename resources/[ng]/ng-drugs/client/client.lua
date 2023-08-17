@@ -21,6 +21,13 @@ local cokeProcessingZones = {
 local isProcessing = false
 local currentStep = 0
 
+local weighZones = {
+    vector3(1396.98, 3605.31, 38.94),
+    vector3(1394.28, 3610.33, 38.94)
+}
+
+local isWeighing = false
+
 --#region Coke picking
 RegisterNetEvent("QBCore:client:onPlayerLoaded", function()
     print("Client has been loaded")
@@ -208,7 +215,7 @@ Citizen.CreateThread(function()
             local distance = Vdist(playerCoords.x, playerCoords.y, playerCoords.z, processingCoords.x, processingCoords.y, processingCoords.z)
 
             if distance <= interactionRadius then
-                DrawText3D(processingCoords.x, processingCoords.y, processingCoords.z + 1.0, "[E] Process")
+                DrawText3D(processingCoords.x, processingCoords.y, processingCoords.z + 1.0, "[E] Process Coke")
 
                 if IsControlJustReleased(0, 38) then -- "E" key
                     interactWithProcessing()
@@ -260,6 +267,58 @@ AddEventHandler("continueProcessing", function(requiredAmount)
                     TriggerEvent('inventory:client:itemBox', QBCore.Shared.Items["coke_brick"], "add")
                 else
                     QBCore.Functions.Notify("Could not add item to inventory.", "error")
+                end
+            end)
+        end)
+    end
+end)
+
+local function interactWeighZone()
+    print("Weighing coke")
+    TriggerServerEvent("weighCoke")
+end
+
+Citizen.CreateThread(function()
+    while true do 
+        Citizen.Wait(0)
+
+        local playerPed = PlayerPedId()
+        local playerCoords = GetEntityCoords(playerPed)
+
+        for _, weighCoords in ipairs(weighZones) do 
+            local distance = Vdist(playerCoords.x, playerCoords.y, playerCoords.z, weighCoords.x, weighCoords.y, weighCoords.z)
+
+            if distance <= interactionRadius then 
+                DrawText3D(weighCoords.x, weighCoords.y, weighCoords.z + 1.0, "[E] Weigh Coke")
+
+                if IsControlJustReleased(0, 38) then 
+                    interactWeighZone()
+                end
+            end
+        end
+    end
+end)
+
+RegisterNetEvent("startWeighing")
+AddEventHandler("startWeighing", function() 
+    if not isWeighing then 
+        isWeighing = true
+
+        local playerPed = PlayerPedId()
+
+        TaskStartScenarioInPlace(playerPed, "PROP_HUMAN_PARKING_METER", -1, true)
+
+        QBCore.Functions.Progressbar("weighing", "Weighing up droogs", 20000, false, true, {},{},{},{},function()
+            ClearPedTasks(playerPed)
+            QBCore.Functions.TriggerCallback("weighReward", function(success)
+                if success then 
+                    TriggerEvent('inventory:client:itemBox', QBCore.Shared.Items["cokebaggy"], "add")
+                    ClearPedTasks(playerPed)
+                    isWeighing = false
+                else
+                    QBCore.Functions.Notify("Could not add item to inventory.", "error")
+                    ClearPedTasks(playerPed)
+                    isWeighing = false
                 end
             end)
         end)

@@ -50,3 +50,52 @@ QBCore.Functions.CreateCallback('rewardProcessing', function(source, cb)
         cb(false)
     end
 end)
+
+RegisterServerEvent("weighCoke")
+AddEventHandler("weighCoke", function()
+    local source = source
+    local player = QBCore.Functions.GetPlayer(source)
+
+    if player then 
+        local drugScales = player.Functions.GetItemByName("drug_scales")
+        local cokeBrick = player.Functions.GetItemByName("coke_brick")
+        local emptyBaggies = player.Functions.GetItemByName("empty_weed_bag")
+        local baggyAmount = 24
+
+        local missingItems = {}
+
+        if not drugScales then
+            table.insert(missingItems, "Drug Scales")
+        end
+
+        if not cokeBrick then
+            table.insert(missingItems, "Coke Brick")
+        end
+
+        if not emptyBaggies then
+            table.insert(missingItems, "Empty Weed Bag")
+        elseif emptyBaggies.amount < baggyAmount then
+            table.insert(missingItems, "More Empty Weed Bags")
+        end
+
+        if #missingItems > 0 then
+            local missingItemsString = table.concat(missingItems, ", ")
+            print("You are missing the following items: " .. missingItemsString)
+        else
+            player.Functions.RemoveItem("empty_weed_bag", baggyAmmount)
+            player.Functions.RemoveItem("coke_brick", 1)
+            TriggerClientEvent("startWeighing", source)
+        end
+    end
+end)
+
+QBCore.Functions.CreateCallback('weighReward', function(source, cb) 
+    local player = QBCore.Functions.GetPlayer(source)
+    if not player then return cb(false) end
+    if player.Functions.AddItem("cokebaggy", 24) then 
+        TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items["cokebaggy"], "add", 24)
+        cb(true)
+    else
+        cb(false)
+    end
+end)
