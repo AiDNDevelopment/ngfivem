@@ -13,7 +13,7 @@
     </head>
     <!-- This is where you want to replace with your audio -->
 
-    <audio autoplay loop id="audio" src="/assets/audio/noncopyright.mp3"></audio>
+    <audio autoplay loop id="audio" src=""></audio>
 
     <body>
         <div id="loading-main" style="min-height: auto;">
@@ -29,48 +29,48 @@
 
             <!-- This is where you want to replace with your video -->
 
-            <!--
-            <q-parallax :height="1080">
+            
+           <!-- <q-parallax :height="1080">
                 <template v-slot:media>
                     <video id="video" width="1920" height="1080" autoplay loop muted>
                     <source type="video/mp4" src="/assets/video/freestockvideo.mp4"></video>
                 </template>
-            </q-parallax>
-            -->
+            </q-parallax> -->
+            
 
             <div class="absolute-top q-pa-xl">
                 <q-card flat style="width: auto; background: transparent;">
                     <q-card-section class="row items-center no-wrap">
-                        <q-carousel animated infinite :autoplay="secondap" v-model="secondslide" transition-next="fade" transition-prev="fade" class="bg-transparent text-white">
+                        <q-carousel animated infinite :autoplay="secondap" v-model="secondslide" transition-next="fade" transition-prev="fade" class="bg-transparent text-white tips">
                             <q-carousel-slide name="1" class="column no-wrap flex-center">
-                                <div style="width: 30vw; white-space: pre-wrap;" class="text-left text-h6">
+                                <div style="width: 30vw; white-space: pre-wrap;" class="text-center text-body1">
                                     {{ CarouselText1 }}
                                 </div>
-                                <div style="opacity: 0.9; width: 30vw; white-space: pre-wrap;" class="text-left text-body1">
+                                <div style="opacity: 0.9; width: 30vw; white-space: pre-wrap;" class="text-center text-body2">
                                     {{ CarouselSubText1 }}
                                 </div>
                             </q-carousel-slide>
                             <q-carousel-slide name="2" class="column no-wrap flex-center">
-                                <div style="width: 30vw; white-space: pre-wrap;" class="text-left text-h6">
+                                <div style="width: 30vw; white-space: pre-wrap;" class="text-center text-body1">
                                     {{ CarouselText2 }}
                                 </div>
-                                <div style="opacity: 0.9; width: 30vw; white-space: pre-wrap;" class="text-left text-body1">
+                                <div style="opacity: 0.9; width: 30vw; white-space: pre-wrap;" class="text-center text-body2">
                                     {{ CarouselSubText2 }}
                                 </div>
                             </q-carousel-slide>
                             <q-carousel-slide name="3" class="column no-wrap flex-center">
-                                <div style="width: 30vw; white-space: pre-wrap;" class="text-left text-h6">
+                                <div style="width: 30vw; white-space: pre-wrap;" class="text-center text-body1">
                                     {{ CarouselText3 }}
                                 </div>
-                                <div style="opacity: 0.9; width: 30vw; white-space: pre-wrap;" class="text-left text-body1">
+                                <div style="opacity: 0.9; width: 30vw; white-space: pre-wrap;" class="text-center text-body2">
                                     {{ CarouselSubText3 }}
                                 </div>
                             </q-carousel-slide>
                             <q-carousel-slide name="4" class="column no-wrap flex-center">
-                                <div style="width: 30vw; white-space: pre-wrap;" class="text-left text-h6">
+                                <div style="width: 30vw; white-space: pre-wrap;" class="text-center text-body1">
                                     {{ CarouselText4 }}
                                 </div>
-                                <div style="opacity: 0.9; width: 30vw; white-space: pre-wrap;" class="text-left text-body1">
+                                <div style="opacity: 0.9; width: 30vw; white-space: pre-wrap;" class="text-center text-body2">
                                     {{ CarouselSubText4 }}
                                 </div>
                             </q-carousel-slide>
@@ -178,25 +178,90 @@
                 </q-card>
             </div>
 
+                <q-card flat id="patch-notes" class="bg-transparent text-white">
+                    <q-card-section>
+                      <div class="text-h6">Patch Notes</div>
+                      <div class="text-subtitle2">Version: {{version}} | Date: {{updatedate}}</div>
+                    </q-card-section>
+                    <q-separator dark></q-separator>
+                    <q-list dense bordered padding class="rounded-borders">
+                        <q-item>
+                            <q-item-section>
+                                Welcome to our first ever official patch notes for NG-FiveM.
+                            </q-item-section>
+                        </q-item>
+                        <q-item>
+                            <q-item-section>
+                                1 As this is our official Launch (hooray!) keep your eyes on this section in the coming days / weeks and we're sure you'll see this change! For more up to date information please join us over on our discord (you can click the icon at the bottom of the screen to get there)!
+                            </q-item-section>
+                        </q-item>
+                        <q-item>
+                            <q-item-section>
+                                2 As this is our official Launch (hooray!) keep your eyes on this section in the coming days / weeks and we're sure you'll see this change! For more up to date information please join us over on our discord (you can click the icon at the bottom of the screen to get there)!
+                            </q-item-section>
+                        </q-item>
+                        <q-item>
+                            <q-item-section>
+                                3 As this is our official Launch (hooray!) keep your eyes on this section in the coming days / weeks and we're sure you'll see this change! For more up to date information please join us over on our discord (you can click the icon at the bottom of the screen to get there)!
+                            </q-item-section>
+                        </q-item>
+                        <q-item>
+                            <q-item-section>
+                                4 As this is our official Launch (hooray!) keep your eyes on this section in the coming days / weeks and we're sure you'll see this change! For more up to date information please join us over on our discord (you can click the icon at the bottom of the screen to get there)!
+                            </q-item-section>
+                        </q-item>
+                    </q-list>
+                  </q-card>
+
+                  <q-card flat id="rules" class="bg-transparent text-white">
+                    <q-card-section>
+                      <div class="text-h6">Important basic rules</div>
+                    </q-card-section>
+                    <q-separator dark></q-separator>
+                    <q-list dense bordered padding class="rounded-borders">
+                        <q-item>
+                            <q-item-section>
+                                * - RDM / VDM Is strictly forbidden: Play nice with others.
+                            </q-item-section>
+                        </q-item>
+                        <q-item>
+                            <q-item-section>
+                                * - No vulgar or exrteme RP: Topics such as terrorism and r*pe.
+                            </q-item-section>
+                        </q-item>
+                        <q-item>
+                            <q-item-section>
+                                * - Value your life: You might respawn but lets pretend we don't.
+                            </q-item-section>
+                        </q-item>
+                        <q-item>
+                            <q-item-section>
+                                * - Staff Decisions are final: We don't like bringing down the hammer.
+                            </q-item-section>
+                        </q-item>
+                    </q-list>
+                  </q-card>
+
+                  <q-card flat id="linkpanel" class="bg-transparent">
+                    <q-card-section>
+                        <div><a href="https://discord.com/"><i class="fab fa-discord"></i></a></div>
+                    </q-card-section>
+                  </q-card>
+
             <div class="absolute-bottom q-pa-xl">
                 <q-card flat style="width: auto; background: transparent;">
                     <q-card-section class="row items-center no-wrap">
-
                         <!-- This is where you want to replace with your logo -->
-
-                        <img class="cursor-none brand-logo" src="/assets/branding/qbcore.svg"></img>
+                        <img class="cursor-none brand-logo" src="/assets/branding/nglogo.png"></img>
                         <q-space></q-space>
                         <q-btn :ripple="false" flat size="xl" icon="downloading" color="white" @click="download = true"></q-btn>
-                        <div class="loadingbar">
-                            <div class="loadbar"><div class="thingy"></div></div>
-                        </div>
                         <q-btn icon="settings_suggest" color="bgbutton" @click="settings = true"></q-btn>
                     </q-card-section>
                 </q-card>
             </div>
 
-            <q-dialog no-shake v-model="download" position="bottom">
-                <q-card style="max-width: 400px; margin-left: 50vw; margin-bottom: 13vh;">
+            <q-dialog no-shake v-model="download" position="right">
+                <q-card style="max-width: 400px; margin-right: 3.4vw; top: 20vh!important; background-color: rgba(69, 68, 68, 1); color: white">
                     <q-card-section>
                         <div style="white-space: pre-wrap;" class="text-h6">
                             {{ DownloadTitle }}
@@ -214,7 +279,7 @@
             </q-dialog>
 
             <q-dialog no-shake v-model="settings" position="right">
-                <q-card style="max-width: 300px; margin-right: 3.4vw; top: 20vh!important;">
+                <q-card style="max-width: 300px; margin-right: 3.4vw; top: 20vh!important; background-color: rgba(69, 68, 68, 1); color: white">
                     <q-card-section class="row items-center q-pb-none">
                         <div style="white-space: pre-wrap;" class="text-h6">
                             {{ SettingsTitle }}

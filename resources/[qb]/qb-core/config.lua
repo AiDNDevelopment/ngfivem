@@ -8,8 +8,8 @@ QBConfig.StatusInterval = 5000 -- how often to check hunger/thirst status in mil
 QBConfig.Money = {}
 QBConfig.Money.MoneyTypes = { cash = 500, bank = 5000, crypto = 0 } -- type = startamount - Add or remove money types for your server (for ex. blackmoney = 0), remember once added it will not be removed from the database!
 QBConfig.Money.DontAllowMinus = { 'cash', 'crypto' } -- Money that is not allowed going in minus
-QBConfig.Money.PayCheckTimeOut = 10 -- The time in minutes that it will give the paycheck
-QBConfig.Money.PayCheckSociety = false -- If true paycheck will come from the society account that the player is employed at, requires qb-management
+QBConfig.Money.PayCheckTimeOut = 60 -- The time in minutes that it will give the paycheck
+QBConfig.Money.PayCheckSociety = true -- If true paycheck will come from the society account that the player is employed at, requires qb-management
 
 QBConfig.Player = {}
 QBConfig.Player.HungerRate = 4.2 -- Rate at which hunger goes down.
@@ -20,7 +20,7 @@ QBConfig.Player.Bloodtypes = {
 
 QBConfig.Server = {} -- General server config
 QBConfig.Server.Closed = false -- Set server closed (no one can join except people with ace permission 'qbadmin.join')
-QBConfig.Server.ClosedReason = "Server Closed" -- Reason message to display when people can't join the server
+QBConfig.Server.ClosedReason = "Server Closed We're probably under maintanence" -- Reason message to display when people can't join the server
 QBConfig.Server.Uptime = 0 -- Time the server has been up.
 QBConfig.Server.Whitelist = false -- Enable or disable whitelist on the server
 QBConfig.Server.WhitelistPermission = 'admin' -- Permission that's able to enter the server when the whitelist is on
@@ -31,7 +31,7 @@ QBConfig.Server.Permissions = { 'god', 'admin', 'mod' } -- Add as many groups as
 
 QBConfig.Commands = {} -- Command Configuration
 QBConfig.Commands.OOCColor = {255, 151, 133} -- RGB color code for the OOC command
-QBConfig.Commands.NEWBColor = {255, 255, 0}
+
 
 QBConfig.Notify = {}
 

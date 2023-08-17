@@ -16,6 +16,7 @@ function QBCore.Player.Login(source, citizenid, newData)
                 PlayerData.position = json.decode(PlayerData.position)
                 PlayerData.metadata = json.decode(PlayerData.metadata)
                 PlayerData.charinfo = json.decode(PlayerData.charinfo)
+                
                 if PlayerData.gang then
                     PlayerData.gang = json.decode(PlayerData.gang)
                 else
@@ -130,6 +131,8 @@ function QBCore.Player.CheckPlayerData(source, PlayerData)
             apartmentId = nil,
         }
     }
+    
+    
     PlayerData.metadata['phonedata'] = PlayerData.metadata['phonedata'] or {
         SerialNumber = QBCore.Player.CreateSerialNumber(),
         InstalledApps = {},
@@ -159,7 +162,7 @@ function QBCore.Player.CheckPlayerData(source, PlayerData)
     PlayerData.gang.grade.level = PlayerData.gang.grade.level or 0
     -- Other
     PlayerData.position = PlayerData.position or QBConfig.DefaultSpawn
-    PlayerData.items = GetResourceState('qb-inventory') ~= 'missing' and exports['qb-inventory']:LoadInventory(PlayerData.source, PlayerData.citizenid) or {}
+    PlayerData.items = GetResourceState('ps-inventory') ~= 'missing' and exports['ps-inventory']:LoadInventory(PlayerData.source, PlayerData.citizenid) or {}
     return QBCore.Player.CreatePlayer(PlayerData, Offline)
 end
 
@@ -288,8 +291,15 @@ function QBCore.Player.CreatePlayer(PlayerData, Offline)
         moneytype = moneytype:lower()
         amount = tonumber(amount)
         if amount < 0 then return end
-        if not self.PlayerData.money[moneytype] then return false end
-        self.PlayerData.money[moneytype] = self.PlayerData.money[moneytype] + amount
+        if moneytype == 'bank' then
+            local data = {}
+            data.amount = amount
+            data.message = reason
+            exports.pefcl:addBankBalance(self.PlayerData.source, data)
+        else
+            if not self.PlayerData.money[moneytype] then return false end
+            self.PlayerData.money[moneytype] = self.PlayerData.money[moneytype] + amount
+        end
 
         if not self.Offline then
             self.Functions.UpdatePlayerData()
@@ -299,71 +309,92 @@ function QBCore.Player.CreatePlayer(PlayerData, Offline)
                 TriggerEvent('qb-log:server:CreateLog', 'playermoney', 'AddMoney', 'lightgreen', '**' .. GetPlayerName(self.PlayerData.source) .. ' (citizenid: ' .. self.PlayerData.citizenid .. ' | id: ' .. self.PlayerData.source .. ')** $' .. amount .. ' (' .. moneytype .. ') added, new ' .. moneytype .. ' balance: ' .. self.PlayerData.money[moneytype] .. ' reason: ' .. reason)
             end
             TriggerClientEvent('hud:client:OnMoneyChange', self.PlayerData.source, moneytype, amount, false)
-            TriggerClientEvent('QBCore:Client:OnMoneyChange', self.PlayerData.source, moneytype, amount, "add", reason)
-            TriggerEvent('QBCore:Server:OnMoneyChange', self.PlayerData.source, moneytype, amount, "add", reason)
         end
 
         return true
-    end
+  end
 
-    function self.Functions.RemoveMoney(moneytype, amount, reason)
-        reason = reason or 'unknown'
-        moneytype = moneytype:lower()
-        amount = tonumber(amount)
-        if amount < 0 then return end
-        if not self.PlayerData.money[moneytype] then return false end
-        for _, mtype in pairs(QBCore.Config.Money.DontAllowMinus) do
-            if mtype == moneytype then
-                if (self.PlayerData.money[moneytype] - amount) < 0 then
-                    return false
-                end
+  function self.Functions.RemoveMoney(moneytype, amount, reason)
+    reason = reason or 'unknown'
+    moneytype = moneytype:lower()
+    amount = tonumber(amount)
+    if amount < 0 then return end
+    if not self.PlayerData.money[moneytype] then return false end
+    for _, mtype in pairs(QBCore.Config.Money.DontAllowMinus) do
+        if mtype == moneytype then
+            if (self.PlayerData.money[moneytype] - amount) < 0 then
+                return false
             end
         end
+        if moneytype == 'bank' then
+            if (exports.pefcl:getDefaultAccountBalance(self.PlayerData.source).data - amount) < 0 then
+                return false
+            end
+        end
+    end
+    if moneytype == 'bank' then
+        local data = {}
+        data.amount = amount
+        data.message = reason
+        exports.pefcl:removeBankBalance(self.PlayerData.source, data)
+    else
         self.PlayerData.money[moneytype] = self.PlayerData.money[moneytype] - amount
-
-        if not self.Offline then
-            self.Functions.UpdatePlayerData()
-            if amount > 100000 then
-                TriggerEvent('qb-log:server:CreateLog', 'playermoney', 'RemoveMoney', 'red', '**' .. GetPlayerName(self.PlayerData.source) .. ' (citizenid: ' .. self.PlayerData.citizenid .. ' | id: ' .. self.PlayerData.source .. ')** $' .. amount .. ' (' .. moneytype .. ') removed, new ' .. moneytype .. ' balance: ' .. self.PlayerData.money[moneytype] .. ' reason: ' .. reason, true)
-            else
-                TriggerEvent('qb-log:server:CreateLog', 'playermoney', 'RemoveMoney', 'red', '**' .. GetPlayerName(self.PlayerData.source) .. ' (citizenid: ' .. self.PlayerData.citizenid .. ' | id: ' .. self.PlayerData.source .. ')** $' .. amount .. ' (' .. moneytype .. ') removed, new ' .. moneytype .. ' balance: ' .. self.PlayerData.money[moneytype] .. ' reason: ' .. reason)
-            end
-            TriggerClientEvent('hud:client:OnMoneyChange', self.PlayerData.source, moneytype, amount, true)
-            if moneytype == 'bank' then
-                TriggerClientEvent('qb-phone:client:RemoveBankMoney', self.PlayerData.source, amount)
-            end
-            TriggerClientEvent('QBCore:Client:OnMoneyChange', self.PlayerData.source, moneytype, amount, "remove", reason)
-            TriggerEvent('QBCore:Server:OnMoneyChange', self.PlayerData.source, moneytype, amount, "remove", reason)
+    end
+    if not self.Offline then
+        self.Functions.UpdatePlayerData()
+        if amount > 100000 then
+            TriggerEvent('qb-log:server:CreateLog', 'playermoney', 'RemoveMoney', 'red', '**' .. GetPlayerName(self.PlayerData.source) .. ' (citizenid: ' .. self.PlayerData.citizenid .. ' | id: ' .. self.PlayerData.source .. ')** $' .. amount .. ' (' .. moneytype .. ') removed, new ' .. moneytype .. ' balance: ' .. self.PlayerData.money[moneytype] .. ' reason: ' .. reason, true)
+        else
+            TriggerEvent('qb-log:server:CreateLog', 'playermoney', 'RemoveMoney', 'red', '**' .. GetPlayerName(self.PlayerData.source) .. ' (citizenid: ' .. self.PlayerData.citizenid .. ' | id: ' .. self.PlayerData.source .. ')** $' .. amount .. ' (' .. moneytype .. ') removed, new ' .. moneytype .. ' balance: ' .. self.PlayerData.money[moneytype] .. ' reason: ' .. reason)
         end
-
-        return true
+        TriggerClientEvent('hud:client:OnMoneyChange', self.PlayerData.source, moneytype, amount, true)
+        if moneytype == 'bank' then
+            TriggerClientEvent('qb-phone:client:RemoveBankMoney', self.PlayerData.source, amount)
+        end
     end
 
-    function self.Functions.SetMoney(moneytype, amount, reason)
-        reason = reason or 'unknown'
-        moneytype = moneytype:lower()
-        amount = tonumber(amount)
-        if amount < 0 then return false end
+    return true
+  end
+
+  function self.Functions.SetMoney(moneytype, amount, reason)
+    moneytype = moneytype:lower()
+    amount = tonumber(amount)
+    if amount < 0 then return false end
+    if moneytype == 'bank' then
+        local data = {}
+        data.amount = amount
+        exports.pefcl:setBankBalance(self.PlayerData.source, data)
+        self.PlayerData.money[moneytype] = exports.pefcl:getDefaultAccountBalance(self.PlayerData.source).data or 0
+    else
         if not self.PlayerData.money[moneytype] then return false end
-        local difference = amount - self.PlayerData.money[moneytype]
         self.PlayerData.money[moneytype] = amount
-
-        if not self.Offline then
-            self.Functions.UpdatePlayerData()
-            TriggerEvent('qb-log:server:CreateLog', 'playermoney', 'SetMoney', 'green', '**' .. GetPlayerName(self.PlayerData.source) .. ' (citizenid: ' .. self.PlayerData.citizenid .. ' | id: ' .. self.PlayerData.source .. ')** $' .. amount .. ' (' .. moneytype .. ') set, new ' .. moneytype .. ' balance: ' .. self.PlayerData.money[moneytype] .. ' reason: ' .. reason)
-            TriggerClientEvent('hud:client:OnMoneyChange', self.PlayerData.source, moneytype, math.abs(difference), difference < 0)
-            TriggerClientEvent('QBCore:Client:OnMoneyChange', self.PlayerData.source, moneytype, amount, "set", reason)
-            TriggerEvent('QBCore:Server:OnMoneyChange', self.PlayerData.source, moneytype, amount, "set", reason)
-        end
-
-        return true
     end
 
-    function self.Functions.GetMoney(moneytype)
-        if not moneytype then return false end
-        moneytype = moneytype:lower()
-        return self.PlayerData.money[moneytype]
+    if not self.Offline then
+        self.Functions.UpdatePlayerData()
+        TriggerEvent('qb-log:server:CreateLog', 'playermoney', 'SetMoney', 'green', '**' .. GetPlayerName(self.PlayerData.source) .. ' (citizenid: ' .. self.PlayerData.citizenid .. ' | id: ' .. self.PlayerData.source .. ')** $' .. amount .. ' (' .. moneytype .. ') set, new ' .. moneytype .. ' balance: ' .. self.PlayerData.money[moneytype])
     end
+
+    return true
+end
+
+function self.Functions.GetMoney(moneytype)
+    if not moneytype then return false end
+    moneytype = moneytype:lower()
+    if moneytype == 'bank' then
+        self.PlayerData.money[moneytype] = exports.pefcl:getDefaultAccountBalance(self.PlayerData.source).data or 0
+        return exports.pefcl:getDefaultAccountBalance(self.PlayerData.source).data
+    end
+    return self.PlayerData.money[moneytype]
+end
+
+function self.Functions.SyncMoney() 
+    local money = exports.pefcl:getDefaultAccountBalance(self.PlayerData.source).data
+    self.PlayerData.money['bank'] = money
+if not self.Offline then
+    self.Functions.UpdatePlayerData()
+end
+end
 
     function self.Functions.SetCreditCard(cardNumber)
         self.PlayerData.charinfo.card = cardNumber
@@ -372,7 +403,7 @@ function QBCore.Player.CreatePlayer(PlayerData, Offline)
 
     function self.Functions.GetCardSlot(cardNumber, cardType)
         local item = tostring(cardType):lower()
-        local slots = exports['qb-inventory']:GetSlotsByItem(self.PlayerData.items, item)
+        local slots = exports['ps-inventory']:GetSlotsByItem(self.PlayerData.items, item)
         for _, slot in pairs(slots) do
             if slot then
                 if self.PlayerData.items[slot].info.cardNumber == cardNumber then
@@ -445,13 +476,10 @@ function QBCore.Functions.AddPlayerMethod(ids, methodName, handler)
     end
 end
 
--- Add a new field table of the player class
--- Use-case:
---[[
-    AddEventHandler('QBCore:Server:PlayerLoaded', function(Player)
-        QBCore.Functions.AddPlayerField(Player.PlayerData.source, "fieldName", "fieldData")
-    end)
-]]
+/*--[[AddEventHandler('QBCore:Server:PlayerLoaded', function(Player)
+    QBCore.Functions.AddPlayerField(Player.PlayerData.source, "contacted", "fieldData")
+[[end)*/
+
 
 function QBCore.Functions.AddPlayerField(ids, fieldName, data)
     local idType = type(ids)
@@ -491,7 +519,7 @@ function QBCore.Player.Save(source)
             position = json.encode(pcoords),
             metadata = json.encode(PlayerData.metadata)
         })
-        if GetResourceState('qb-inventory') ~= 'missing' then exports['qb-inventory']:SaveInventory(source) end
+        if GetResourceState('ps-inventory') ~= 'missing' then exports['ps-inventory']:SaveInventory(source) end
         QBCore.ShowSuccess(GetCurrentResourceName(), PlayerData.name .. ' PLAYER SAVED!')
     else
         QBCore.ShowError(GetCurrentResourceName(), 'ERROR QBCORE.PLAYER.SAVE - PLAYERDATA IS EMPTY!')
@@ -512,7 +540,7 @@ function QBCore.Player.SaveOffline(PlayerData)
             position = json.encode(PlayerData.position),
             metadata = json.encode(PlayerData.metadata)
         })
-        if GetResourceState('qb-inventory') ~= 'missing' then exports['qb-inventory']:SaveInventory(PlayerData, true) end
+        if GetResourceState('ps-inventory') ~= 'missing' then exports['ps-inventory']:SaveInventory(PlayerData, true) end
         QBCore.ShowSuccess(GetCurrentResourceName(), PlayerData.name .. ' OFFLINE PLAYER SAVED!')
     else
         QBCore.ShowError(GetCurrentResourceName(), 'ERROR QBCORE.PLAYER.SAVEOFFLINE - PLAYERDATA IS EMPTY!')
@@ -587,28 +615,28 @@ end
 -- Inventory Backwards Compatibility
 
 function QBCore.Player.SaveInventory(source)
-    if GetResourceState('qb-inventory') == 'missing' then return end
-    exports['qb-inventory']:SaveInventory(source, false)
+    if GetResourceState('ps-inventory') == 'missing' then return end
+    exports['ps-inventory']:SaveInventory(source, false)
 end
 
 function QBCore.Player.SaveOfflineInventory(PlayerData)
-    if GetResourceState('qb-inventory') == 'missing' then return end
-    exports['qb-inventory']:SaveInventory(PlayerData, true)
+    if GetResourceState('ps-inventory') == 'missing' then return end
+    exports['ps-inventory']:SaveInventory(PlayerData, true)
 end
 
 function QBCore.Player.GetTotalWeight(items)
-    if GetResourceState('qb-inventory') == 'missing' then return end
-    return exports['qb-inventory']:GetTotalWeight(items)
+    if GetResourceState('ps-inventory') == 'missing' then return end
+    return exports['ps-inventory']:GetTotalWeight(items)
 end
 
 function QBCore.Player.GetSlotsByItem(items, itemName)
-    if GetResourceState('qb-inventory') == 'missing' then return end
-    return exports['qb-inventory']:GetSlotsByItem(items, itemName)
+    if GetResourceState('ps-inventory') == 'missing' then return end
+    return exports['ps-inventory']:GetSlotsByItem(items, itemName)
 end
 
 function QBCore.Player.GetFirstSlotByItem(items, itemName)
-    if GetResourceState('qb-inventory') == 'missing' then return end
-    return exports['qb-inventory']:GetFirstSlotByItem(items, itemName)
+    if GetResourceState('ps-inventory') == 'missing' then return end
+    return exports['ps-inventory']:GetFirstSlotByItem(items, itemName)
 end
 
 -- Util Functions

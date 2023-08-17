@@ -115,5 +115,23 @@ QBShared.Gangs = {
 				isboss = true
             },
         },
+	},
+    ['url'] = {
+		label = 'Underground Racing League',
+		grades = {
+            ['0'] = {
+                name = 'No Team'
+            },
+			['1'] = {
+                name = 'CEC'
+            },
+			['2'] = {
+                name = 'Los Bandoleros'
+            },
+			['3'] = {
+                name = 'URL Management',
+				isboss = true
+            },
+        },
 	}
 }

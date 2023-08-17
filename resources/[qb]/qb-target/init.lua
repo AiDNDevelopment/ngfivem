@@ -66,12 +66,6 @@ Config.MenuControlKey = 238
 -- These are all empty for you to fill in, refer to the .md files for help in filling these in
 
 Config.CircleZones = {
-	["testing"] = {
-		name = "testing",
-		coords = vector3(159.6, -999.4, 29.35),
-		radius = 3,
-		debugPoly = true
-	}
 }
 
 Config.BoxZones = {
@@ -86,6 +80,7 @@ Config.TargetBones = {
 }
 
 Config.TargetModels = {
+	
 
 }
 
@@ -106,7 +101,120 @@ Config.GlobalPlayerOptions = {
 }
 
 Config.Peds = {
-
+	{ -- MAT PICKUP 1
+		model = 's_m_y_dealer_01',
+		coords = vector4(702.61, -1138.32, 22.72, 314.6),
+		networked = true,
+		freeze = true,
+		invincible = true, 
+		blockevents = true, 
+		target = {
+			options = {
+				{
+					type ="client",
+					event = "matrun:client:matrun1",
+					icon = "fas fa-handshake",
+					label = "Start Materials Run",
+				},
+			},
+			distance = 2.5
+		}
+	},
+	{ -- MAT PICKUP 2
+		model = 's_m_y_dealer_01',
+		coords = vector4(-841.99, -2932.41, 12.95, 152.45),
+		networked = true,
+		freeze = true,
+		invincible = true, 
+		blockevents = true, 
+		target = {
+			options = {
+				{
+					type ="client",
+					event = "matrun:client:matrun2",
+					icon = "fas fa-handshake",
+					label = "Start Materials Run",
+				},
+			},
+			distance = 2.5
+		}
+	},
+	{ -- MAT PICKUP 3
+		model = 's_m_y_dealer_01',
+		coords = vector4(1761.01, 3324.92, 40.4, 104.27),
+		networked = true,
+		freeze = true,
+		invincible = true, 
+		blockevents = true, 
+		target = {
+			options = {
+				{
+					type ="client",
+					event = "matrun:client:matrun3",
+					icon = "fas fa-handshake",
+					label = "Start Materials Run",
+				},
+			},
+			distance = 2.5
+		}
+	},
+	{ -- MAT DROP 1
+		model = 's_m_y_dealer_01',
+		coords = vector4(830.27, -2173.32, 29.29, 290.82),
+		networked = true,
+		freeze = true,
+		invincible = true, 
+		blockevents = true, 
+		target = {
+			options = {
+				{
+					type ="client",
+					event = "matrun:client:dropoff1",
+					icon = "fas fa-handshake",
+					label = "Finish Materials Run",
+				},
+			},
+			distance = 2.5
+		}
+	},
+	{ -- MAT DROP 2
+		model = 's_m_y_dealer_01',
+		coords = vector4(245.74, -16.83, 72.76, 341.22),
+		networked = true,
+		freeze = true,
+		invincible = true, 
+		blockevents = true, 
+		target = {
+			options = {
+				{
+					type ="client",
+					event = "matrun:client:dropoff2",
+					icon = "fas fa-handshake",
+					label = "Finish Materials Run",
+				},
+			},
+			distance = 2.5
+		}
+	},
+	{ -- MAT DROP 3
+		model = 's_m_y_dealer_01',
+		coords = vector4(-349.87, 6070.84, 30.5, 60.32),
+		networked = true,
+		freeze = true,
+		invincible = true, 
+		blockevents = true, 
+		target = {
+			options = {
+				{
+					type ="client",
+					event = "matrun:client:dropoff3",
+					icon = "fas fa-handshake",
+					label = "Finish Materials Run",
+				},
+			},
+			distance = 2.5
+		}
+	},
 }
 
 -------------------------------------------------------------------------------

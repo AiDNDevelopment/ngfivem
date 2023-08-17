@@ -39,3 +39,16 @@ luac.out
 *.x86_64
 *.hex
 
+*.7z
+
+#Stuff Im trying to hide
+cache
+.replxx_history
+myLogo.png
+polyzone_created_zones.txt
+server.cfg
+server.cfg.bkp
+resources/npwd/sv_npwd.log
+resources/pefcl/sv_pefcl.log
+resources/npwd/sv_npwd.log
+resources/npwd/sv_npwd.log

@@ -5,17 +5,17 @@ const { ref } = Vue
 const load = Vue.createApp({
   setup () {
     return {
-      CarouselText1: 'You can add/remove items, vehicles, jobs & gangs through the shared folder.',
+      CarouselText1: 'If you are downed you have 6 minutes before you are automatically admitted to the emergency room.',
       CarouselSubText1: 'Photo captured by: Markyoo#8068',
-      CarouselText2: 'Adding additional player data can be achieved by modifying the qb-core player.lua file.',
+      CarouselText2: `Some popular hangout spots include Legion and the hospital`,
       CarouselSubText2: 'Photo captured by: ihyajb#9723',
-      CarouselText3: 'All server-specific adjustments can be made in the config.lua files throughout the build.',
+      CarouselText3: 'Join our development tests and earn rewards!.',
       CarouselSubText3: 'Photo captured by: FLAPZ[INACTIV]#9925',
-      CarouselText4: 'For additional support please join our community at discord.gg/qbcore',
+      CarouselText4: 'Remember we have /help and /newb if you need to learn the ropes!',
       CarouselSubText4: 'Photo captured by: Robinerino#1312',
 
-      DownloadTitle: 'Downloading QBCore Server',
-      DownloadDesc: "Hold tight while we begin downloading all the resources/assets required to play on QBCore Server. \n\nAfter download has been finished successfully, you'll be placed into the server and this screen will disappear. Please don't leave or turn off your PC. ",
+      DownloadTitle: 'Preparing our city for you 👍',
+      DownloadDesc: "Please hold up for a moment whilst we download all of the resources and assets needed to join our city. \n\nOnce the download has been completed successfully, you will be sent into our city and this screen will dissapear. Please don't leave or turn off your PC",
 
       SettingsTitle: 'Settings',
       AudioTrackDesc1: 'When disabled the current audio-track playing will be stopped.',
@@ -39,6 +39,10 @@ const load = Vue.createApp({
       Keybind14: 'Hands Up Emote',
       Keybind15: 'Use Item Slots',
       Keybind16: 'Cruise Control',
+
+      version:'1.1.0',
+      updatedate: '12/08/2023', /*UK time ofc*/
+      
 
       firstap: ref(true),
       secondap: ref(true),
@@ -106,3 +110,16 @@ const handlers = {
 window.addEventListener("message", function (e) {
     (handlers[e.data.eventName] || function () {})(e.data);
 });
+
+function progressBar() {    
+    let progress = 0;
+    const progressBarInner = document.querySelector('.progress-bar-inner');
+    const interval = setInterval(() => {
+        progress += 10;
+        progressBarInner.style.width = `${progress}%`;
+        if (progress >= 100) {
+            clearInterval(interval);
+            // You can add code here to hide the loading screen and show the game UI
+        }
+    }, 500);
+}

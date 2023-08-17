@@ -103,7 +103,7 @@ body {
 .button {
   width: auto;
   height: 10%;
-  background: rgba(23, 23, 23, 90%);
+  background: rgba(0, 0, 0, 0.3);
   color: white;
   margin: auto;
   position: relative;
@@ -111,11 +111,13 @@ body {
   margin-top: 0.5rem;
   overflow: hidden;
   padding: 0.45rem;
+  border: white;
   border-radius: 0.15rem;
   display: flex;
   flex-direction: column;
   box-shadow: 0rem 0rem 0.5rem 0.05rem #000000;
   cursor: pointer;
+  box-shadow: inset 0px 0px 0px 1px black;
 }
 
 .icon {
@@ -126,13 +128,13 @@ body {
 }
 
 .button:hover {
-  background-color: #dc143c;
+  background-color: rgba(68,117,182,.3);
 }
 
 .title {
   width: auto;
   height: 10%;
-  background: rgba(23, 23, 23, 90%);
+  background: rgba(69, 68, 68, 1);
   color: white;
   margin: auto;
   position: relative;
@@ -144,6 +146,7 @@ body {
   display: flex;
   flex-direction: column;
   box-shadow: 0rem 0rem 0.5rem 0.05rem #000000;
+  box-shadow: inset 0px 0px 0px 1px black;
 }
 
 .title > div.column > div.header {
