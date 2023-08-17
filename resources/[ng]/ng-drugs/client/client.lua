@@ -9,6 +9,18 @@ local spawnRadius = 45
 
 local hasSpawnedPlants = false -- Variable to track if plants have been spawned
 
+local cokeProcessingZones = {
+    vector3(1389.72, 3603.41, 38.94),
+    vector3(1388.96, 3605.72, 38.94),
+    vector3(1390.08, 3608.93, 38.94),
+    vector3(1394.67, 3601.89, 38.94),
+    vector3(1391.89, 3605.87, 38.94),
+}
+
+
+local isProcessing = false
+local currentStep = 0
+
 --#region Coke picking
 RegisterNetEvent("QBCore:client:onPlayerLoaded", function()
     print("Client has been loaded")
@@ -178,3 +190,79 @@ AddEventHandler('onResourceStop', function(resourceName)
     print("Resource stopped: " .. resourceName)
 end)
 --#endregion Coke picking
+
+--#region Coke Processing
+local function interactWithProcessing()
+    -- Trigger a server event to process coca leaves
+    TriggerServerEvent("processCocaLeaves")
+end
+
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(0)
+
+        local playerPed = PlayerPedId()
+        local playerCoords = GetEntityCoords(playerPed)
+
+        for _, processingCoords in ipairs(cokeProcessingZones) do
+            local distance = Vdist(playerCoords.x, playerCoords.y, playerCoords.z, processingCoords.x, processingCoords.y, processingCoords.z)
+
+            if distance <= interactionRadius then
+                DrawText3D(processingCoords.x, processingCoords.y, processingCoords.z + 1.0, "[E] Process")
+
+                if IsControlJustReleased(0, 38) then -- "E" key
+                    interactWithProcessing()
+                end
+            end
+        end
+    end
+end)
+
+RegisterNetEvent("startProcessingStep")
+AddEventHandler("startProcessingStep", function(requiredAmount)
+    if not isProcessing then
+        isProcessing = true
+        currentStep = 1
+        
+        local playerPed = PlayerPedId()
+        
+        -- Start animation for the first processing step
+        
+        TaskStartScenarioInPlace(playerPed, "PROP_HUMAN_PARKING_METER", -1, true) -- Chemical mixing animation
+        
+        -- Display progress bar for the first step
+        QBCore.Functions.Progressbar("processing_step", "Mixing Chemicals", 10000, false, true, {}, {}, {}, {}, function()
+            -- First step completed, end the animation and start second step
+            ClearPedTasks(playerPed) -- Clear the animation task
+            currentStep = 2
+            TriggerEvent("continueProcessing")
+        end)
+    end
+end)
+
+RegisterNetEvent("continueProcessing")
+AddEventHandler("continueProcessing", function(requiredAmount)
+    if currentStep == 2 then
+        local playerPed = PlayerPedId()
+        ClearPedTasks(playerPed)
+        
+        -- Start animation for the second processing step
+        TaskStartScenarioInPlace(playerPed, "PROP_HUMAN_BUM_BIN", -1, true) -- Pouring animation
+        
+        -- Display progress bar for the second step
+        QBCore.Functions.Progressbar("processing_step", "Pouring Mixture", 10000, false, true, {}, {}, {}, {}, function()
+            -- Both steps completed
+            isProcessing = false
+            currentStep = 0
+            ClearPedTasks(playerPed)
+            QBCore.Functions.TriggerCallback("rewardProcessing", function(success)
+                if success then 
+                    TriggerEvent('inventory:client:itemBox', QBCore.Shared.Items["coke_brick"], "add")
+                else
+                    QBCore.Functions.Notify("Could not add item to inventory.", "error")
+                end
+            end)
+        end)
+    end
+end)
+--#endregion Coke Processing

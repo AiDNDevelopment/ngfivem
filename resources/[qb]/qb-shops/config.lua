@@ -256,6 +256,14 @@ Config.Products = {
             slot = 15,
             requiredJob = { "mechanic" }
         },
+        [16] = {
+            name = "drug_scales",
+            price = 100, 
+            amount = 50,
+            info = {},
+            type = "item",
+            slot = 16,
+        },
     },
     ["weedshop"] = {
         [1] = {
